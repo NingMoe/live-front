@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width" />
+    <meta name="keywords" content="aaa" />
+    <meta name="Description" content="bbb" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="/static/css/swiper.css" rel="stylesheet" />
+	<link href="/static/css/layui.css" rel="stylesheet" />
+	<link href="/static/css/index.css" rel="stylesheet" />
+	<link href="/static/css/face.css" rel="stylesheet" />
+</head>
+<body style="background:url('/static/images/bg.jpg')">
+	<div class="header">
+		<div class="logo"></div>
+		<div class="hr">
+			<ul>
+				<li>
+					<a href="">
+						<img src="/static/images/head.png" alt="" />
+						<span>风中追风</span>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:login()">
+						登录/注册
+					</a>
+				</li>
+				<li class="gexinghua">
+					<a href="">
+						<img src="/static/images/layer.png" alt="" />
+					</a>
+					<div class="selfdom">
+						<div class="domWrap">
+							<span>个性化</span>
+						</div>
+						<p class="domTitle">布局</p>
+						<div class="buju">
+							<p class="bujuTitle">观看模式</p>
+							<div class="bujuContent">
+								<a class="caidan caidan1 select" dataNumber="0"></a>
+								<a class="caidan caidan2" dataNumber="1"></a>
+							</div>
+						</div>
+						<p class="domTitle">背景图</p>
+						<div class="buju">
+							<div class="bujuContent">
+								<a dataNumber="0" class="bg select"><img src="/static/images/0.jpg" alt="" /></a>
+								<a dataNumber="1" class="bg"><img src="/static/images/1.jpg" alt="" /></a>
+								<a dataNumber="2" class="bg"><img src="/static/images/2.jpg" alt="" /></a>
+								<a dataNumber="3" class="bg"><img src="/static/images/3.jpg" alt="" /></a>
+								<a dataNumber="4" class="bg"><img src="/static/images/4.jpg" alt="" /></a>
+								<a dataNumber="5" class="bg"><img src="/static/images/5.jpg" alt="" /></a>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+			
+		</div>
+	</div>
+	<div class="main">
+		<div class="column0">
+			<ul>
+				<li>
+					<a href="#">
+						<img src="/static/images/menu_calendar.png" alt="" />
+						<p>财经日历</p>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="/static/images/menu_notice.png" alt="" />
+						<p>及时策略</p>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="/static/images/menu_finance.png" alt="" />
+						<p>交易提示</p>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="/static/images/menu_vote.png" alt="" />
+						<p>葵花宝典</p>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="/static/images/menu_course.png" alt="" />
+						<p>课程安排</p>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="/static/images/menu_phone.png" alt="" />
+						<p>手机直播</p>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="column1">
+			<ul class="userTable">
+				<li class="select">在线会员</li>
+				<li>在线客服</li>
+			</ul>
+			<div class="userListWrap">
+				<ul class="userList">
+					<li class="userSearch">
+						<input class="searchText" type="text" />
+						<a class="searchBtn" href=""></a>
+					</li>
+					<li class="userInfo">
+						<img src="/static/images/head.png" class="avatar" />
+						<span class="nickname">游客-30924553</span>
+						<span class="time">08-08 11:51:37</span>
+						<img src="/static/images/level.png" class="groupion" />
+					</li>
+					
+				</ul>
+			</div>
+			<div style="display:none;" class="userListWrap">
+				<ul class="userList">
+					<li class="userInfo">
+						<img src="/static/images/head.png" class="avatar" />
+						<span class="nickname">游客-30924553</span>
+						<img src="/static/images/level.png" class="groupion" />
+					</li>
+					<li style="text-align:center;">
+						<a class="kefu tiao_fly" href=""></a>
+						<span class="kefuPhone">电话:11111111</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="column2">
+			<div class="tableWrap">
+				<ul class="table">
+					<li>大厅</li>
+					<li>快讯</li>
+				</ul>
+			</div>
+			<div class="notify">
+				<marquee direction=left>fds</marquee>
+			</div>
+			<div class="message">
+				<div class="activity">
+					<div class="hongbao">
+						<a href="">
+							<img src="/static/images/g_hb.gif" />
+						</a>
+					</div>
+					<div class="choujiang">
+						<a href="">
+							<img src="/static/images/g_cj.gif" />
+						</a>
+					</div>
+					<div class="qingping">
+						<a id="chatClear">清屏</a>
+					</div>
+				</div>
+				<div class="chat">
+					<div class="chatInfo">
+						<img src="/static/images/head.png" class="userHead"/>	
+						<div class="userRight">
+							<div class="messageInfo">
+								<span>风中追风</span>
+								<span>[会员]</span>
+								<span>16:37</span>
+							</div>
+							<div class="messageContent">
+								<span>的撒多</span>
+							</div>
+						</div>
+					</div>
+					<div class="chatInfo">
+						<img src="/static/images/head.png" class="userHead"/>	
+						<div class="userRight">
+							<div class="messageInfo">
+								<span>风中追风</span>
+								<span>[会员]</span>
+								<span>16:37</span>
+							</div>
+							<div class="messageContent">
+								<span>的撒多</span>
+							</div>
+						</div>
+					</div>
+					<div class="chatInfo">
+						<img src="/static/images/head.png" class="userHead"/>	
+						<div class="userRight">
+							<div class="messageInfo">
+								<span>风中追风</span>
+								<span>[会员]</span>
+								<span>16:37</span>
+							</div>
+							<div class="messageContent">
+								<span>的撒多</span>
+							</div>
+						</div>
+					</div>
+					<div class="chatInfo">
+						<img src="/static/images/head.png" class="userHead"/>	
+						<div class="userRight">
+							<div class="messageInfo">
+								<span>风中追风</span>
+								<span>[会员]</span>
+								<span>16:37</span>
+							</div>
+							<div class="messageContent">
+								<span>的撒多</span>
+							</div>
+						</div>
+					</div>
+					<div class="chatInfo">
+						<img src="/static/images/head.png" class="userHead"/>	
+						<div class="userRight">
+							<div class="messageInfo">
+								<span>风中追风</span>
+								<span>[会员]</span>
+								<span>16:37</span>
+							</div>
+							<div class="messageContent">
+								<span>的撒多</span>
+							</div>
+						</div>
+					</div>
+					<div class="chatInfo">
+						<img src="/static/images/head.png" class="userHead"/>	
+						<div class="userRight">
+							<div class="messageInfo">
+								<span>风中追风</span>
+								<span>[会员]</span>
+								<span>16:37</span>
+							</div>
+							<div class="messageContent">
+								<span>的撒多</span>
+							</div>
+						</div>
+					</div>
+					<div class="chatInfo">
+						<img src="/static/images/head.png" class="userHead"/>	
+						<div class="userRight">
+							<div class="messageInfo">
+								<span>风中追风</span>
+								<span>[会员]</span>
+								<span>16:37</span>
+							</div>
+							<div class="messageContent">
+								<span>的撒多</span>
+							</div>
+						</div>
+					</div>
+					<div class="chatInfo">
+						<img src="/static/images/head.png" class="userHead"/>	
+						<div class="userRight">
+							<div class="messageInfo">
+								<span>风中追风</span>
+								<span>[会员]</span>
+								<span>16:37</span>
+							</div>
+							<div class="messageContent">
+								<span>的撒多</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="serverQQ">
+				
+			</div>
+			<div class="toolbar">
+				<a class="face" href="javascript:showFacePanel(this,'#editor')"></a>
+			</div>
+			
+			<div class="EnMessage">
+				<div class="message_editor" id="editor" contenteditable="true"></div>
+				<div class="sendBtn">
+					<p style="margin-top: 8px;">发送</p>
+					<p>(Enter)</p>
+				</div>
+			</div>
+			<div id="face" style="position: absolute; bottom: 100px; left: inherit; display: none;" toinput="#editor"></div>
+		</div>
+		<div class="column3">
+			<div class="videoTitle">
+				<p>视频直播</p>
+			</div>
+			<div class="videoLive">
+				
+			</div>
+			<div class="banner"> 
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<div class="swiper-zoom-container">
+								<img src="/static/images/largeNature1.jpg">
+							</div>
+						</div>
+						<div class="swiper-slide">
+							<div class="swiper-zoom-container">
+								<img src="/static/images/largeNature2.jpg">
+							</div>
+						</div>
+						<div class="swiper-slide">
+							<div class="swiper-zoom-container">
+								<img src="/static/images/largeNature3.jpg">
+							</div>
+						</div>
+
+					</div>
+					<!-- Add Pagination -->
+					<div class="swiper-pagination"></div>
+					<!-- Add Arrows -->
+					<div class="swiper-button-next"></div>
+					<div class="swiper-button-prev"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="fenxiang">
+			分享到：
+			<a class="shearico" href="javascript:void(0);"  style="background-position-x:-120px;"></a>
+			<a class="shearico" href="javascript:void(0);"  style="background-position-x:-150px;"></a>
+			<a class="shearico" href="javascript:void(0);"  style="background-position-x:-93px;"></a>
+		</div>
+	</div>
+	<script type="text/javascript" src="/static/js/jquery.js"></script>
+	<script type="text/javascript" src="/static/layui.js"></script>
+	<script type="text/javascript" src="/static/js/index.js"></script>
+	<script type="text/javascript" src="/static/js/swiper.js"></script>
+	<script>
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        spaceBetween: 30,
+        hashnav: true,
+        hashnavWatchState: true
+    });
+	
+	function login(){
+		layui.use('layer',function(){
+			var layer = layui.layer;
+			layer.open({
+				title:false,
+				type:2,
+				content:'{:url("User/login")}',
+				area:['378px','530px'],
+			});
+		});
+	}
+    </script>
+</body>
+</html>
