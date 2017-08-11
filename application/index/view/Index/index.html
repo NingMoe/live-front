@@ -17,10 +17,23 @@
 		<div class="logo"></div>
 		<div class="hr">
 			<ul>
+				{notempty name="user.uname"}
 				<li>
-					<a href="">
+					<a href="#">
+						<img src="/static/images/user/{$user.head}" alt="" />
+						<span>{$user.nickname}</span>
+					</a>
+				</li>
+				<li>
+					<a href="{:url('User/logout')}">
+						退出
+					</a>
+				</li>
+					{else /}
+				<li>
+					<a href="#">
 						<img src="/static/images/head.png" alt="" />
-						<span>风中追风</span>
+						<span>游客-de23ds</span>
 					</a>
 				</li>
 				<li>
@@ -28,6 +41,7 @@
 						登录/注册
 					</a>
 				</li>
+				{/notempty}
 				<li class="gexinghua">
 					<a href="">
 						<img src="/static/images/layer.png" alt="" />
@@ -355,6 +369,44 @@
 			});
 		});
 	}
+
+    //表情包
+    function showFacePanel(e,toinput){
+        $('#face').css('display','block');
+        $.get('{:url("Index/face")}',function(data){
+            $('#face').html(data);
+            $('#facenav li').click(function(){
+                var rel = $(this).attr('rel');
+                $('#face dl').hide();
+                $('#f_'+rel).show();
+                $(this).siblings().removeClass('f_cur');
+                $(this).addClass('f_cur');
+            });
+            $('#face dd').click(function(){
+                var img_link = $(this).find('img').attr('src');
+                var img_alt  = $(this).attr('title');
+                var cur = $('#msg_text').html();
+                cur+= '<img src="'+img_link+'" alt="'+img_alt+'" />';
+                $('#msg_text').html(cur);
+                $('#msg_text').scrollTop( $('#msg_text').prop("scrollHeight"));
+            });
+        }).success(function(e){
+            $(document).bind('mouseup',function(e){
+                if($(e.target).attr('isface')!='1' && $(e.target).attr('isface')!='2')
+                {
+                    $('#face').hide();
+                    $(document).unbind('mouseup');
+                }
+                else if($(e.target).attr('isface')=='1')
+                {
+                    var toinput =$('#face').attr("toinput");
+                    if($(e.target).attr('src')!=undefined){
+                        $(toinput).append('<img src="'+$(e.target).attr('src')+'" onresizestart="return false" contenteditable="false">');}
+                }
+            });
+        });
+
+    }
     </script>
 </body>
 </html>

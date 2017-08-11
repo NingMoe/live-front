@@ -80,3 +80,4 @@ jQuery.fn.putCursorAtEnd = function() {
         }
     });
 };
+

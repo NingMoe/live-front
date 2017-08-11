@@ -83,7 +83,7 @@ function buju(e){
 			break;
 		case '1':
 			/*保留聊天和视频区域*/
-			eval('ob[2]='+ob[3]+',ob[3]='+ob[2]);
+
 			break;
 		default:
 			break;
@@ -93,45 +93,9 @@ function buju(e){
 
 function bg(e){
 	
-	$('body').css('background-image','url("images/'+e+'.jpg")');
+	$('body').css('background-image','url("/static/images/'+e+'.jpg")');
 	
 }
 
-//表情包
-function showFacePanel(e,toinput){
-	$('#face').css('display','block');
-	$.get('face.html',function(data){
-			$('#face').html(data);
-			$('#facenav li').click(function(){
-				var rel = $(this).attr('rel');
-				$('#face dl').hide();
-				$('#f_'+rel).show();
-				$(this).siblings().removeClass('f_cur');
-				$(this).addClass('f_cur');
-			});
-			$('#face dd').click(function(){
-				var img_link = $(this).find('img').attr('src');
-				var img_alt  = $(this).attr('title');
-				var cur = $('#msg_text').html();
-					cur+= '<img src="'+img_link+'" alt="'+img_alt+'" />';
-				$('#msg_text').html(cur);	
-				$('#msg_text').scrollTop( $('#msg_text').prop("scrollHeight"));
-			});
-		}).success(function(e){
-			$(document).bind('mouseup',function(e){
-			if($(e.target).attr('isface')!='1' && $(e.target).attr('isface')!='2')
-			{
-				$('#face').hide();
-				$(document).unbind('mouseup');
-			}
-			else if($(e.target).attr('isface')=='1')
-			{
-				var toinput =$('#face').attr("toinput");
-							if($(e.target).attr('src')!=undefined){
-				$(toinput).append('<img src="'+$(e.target).attr('src')+'" onresizestart="return false" contenteditable="false">');}
-			}
-		});
-	});
-		
-}
+
 

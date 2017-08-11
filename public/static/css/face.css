@@ -12,7 +12,7 @@
 #face ul, #caitiao ul {
     height: 22px;
     line-height: 22px;
-    background: #e4e4e3 url(../images/g_bg.jpg) left top repeat-x;
+    background: #e4e4e3 url(/static/images/g_bg.jpg) left top repeat-x;
     position: absolute;
     left: 0;
     bottom: 0;
