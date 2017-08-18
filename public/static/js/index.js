@@ -30,9 +30,52 @@ $('.gexinghua').hover(function(){
 $('#chatClear').click(function(){
 	$('.chat').html('');
 });
+$('#editor').bind('keyup',function(e){
+    if(e.keyCode==13){
+        sendMsg();
+    }
+});
+$('.sendBtn').click(function(){
+    sendMsg();
+});
+$('.userList li').bind("contextmenu", function(){
+    return false;
+});
+$('.mousemenu').bind("contextmenu", function(){
+    return false;
+});
+
+$(".userList li").mousedown(function(e) {
+    //右键为3
+    if (3 == e.which) {
+       var px = e.pageX;
+       var py = e.pageY;
+       var username = $(e.target).parent('.userInfo').attr('username');
+       $('.aite').attr('username',username);
+       $('.mousemenu').css('display','block');
+       $('.mousemenu').css('left',px);
+       $('.mousemenu').css('top',py);
+
+    }
+});
+
+/*鼠标按下关闭弹出的窗口*/
+$('body').mousedown(function(e){
+	if($(e.target).parent('.userInfo').length<=0){
+        $('.mousemenu').css('display','none');
+	}
+});
+
+/*艾特*/
+$('.aite').mousedown(function(){
+	var con = $('#editor').html();
+	var username = $('.aite').attr('username');
+	con += '<span class="aiteuser">@'+username+'</span>';
+	$('#editor').html(con);
+});
 
 $(window).resize(function(){
-	
+
 	resetBase();//窗口改变时,重新计算元素高度
 	
 });
@@ -70,8 +113,8 @@ function resetBase(){
 	$('.column2').width(videoWidth*0.4);
 	
 	//计算视频块高度
-	var videoHeight = winHeight-40-115;
-	$('.videoLive').height(videoHeight);
+	var videoHeight = winHeight-40-400;
+	$('.banner').height(videoHeight);
 	
 }
 
@@ -96,6 +139,13 @@ function bg(e){
 	$('body').css('background-image','url("/static/images/'+e+'.jpg")');
 	
 }
+
+//设置用户信息
+function setUserInfo(user){
+    $('#userHead').attr('src',user['head']);
+    $('#userName').html(user['nickname']);
+}
+
 
 
 

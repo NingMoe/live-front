@@ -20,20 +20,20 @@
 				{notempty name="user.uname"}
 				<li>
 					<a href="#">
-						<img src="/static/images/user/{$user.head}" alt="" />
-						<span>{$user.nickname}</span>
+						<img id="userHead" src="" alt="" />
+						<span id="userName"></span>
 					</a>
 				</li>
 				<li>
-					<a href="{:url('User/logout')}">
+					<a href="javascript:logout()">
 						退出
 					</a>
 				</li>
 					{else /}
 				<li>
 					<a href="#">
-						<img src="/static/images/head.png" alt="" />
-						<span>游客-de23ds</span>
+						<img id="userHead" src="" alt="" />
+						<span id="userName"></span>
 					</a>
 				</li>
 				<li>
@@ -127,19 +127,30 @@
 						<input class="searchText" type="text" />
 						<a class="searchBtn" href=""></a>
 					</li>
-					<li class="userInfo">
-						<img src="/static/images/head.png" class="avatar" />
+					<li class="userInfo" username="游客-30924553">
+						<img src="/static/images/youke0.png" class="avatar" />
 						<span class="nickname">游客-30924553</span>
 						<span class="time">08-08 11:51:37</span>
 						<img src="/static/images/level.png" class="groupion" />
 					</li>
-					
+					<li class="userInfo" username="游客-30924554">
+						<img src="/static/images/youke0.png" class="avatar" />
+						<span class="nickname">游客-30924554</span>
+						<span class="time">08-08 11:51:37</span>
+						<img src="/static/images/level.png" class="groupion" />
+					</li>
+					<li class="userInfo" username="游客-30924555">
+						<img src="/static/images/youke0.png" class="avatar" />
+						<span class="nickname">游客-30924555</span>
+						<span class="time">08-08 11:51:37</span>
+						<img src="/static/images/level.png" class="groupion" />
+					</li>
 				</ul>
 			</div>
 			<div style="display:none;" class="userListWrap">
 				<ul class="userList">
 					<li class="userInfo">
-						<img src="/static/images/head.png" class="avatar" />
+						<img src="/static/images/youke0.png" class="avatar" />
 						<span class="nickname">游客-30924553</span>
 						<img src="/static/images/level.png" class="groupion" />
 					</li>
@@ -178,7 +189,7 @@
 				</div>
 				<div class="chat">
 					<div class="chatInfo">
-						<img src="/static/images/head.png" class="userHead"/>	
+						<img src="/static/images/youke0.png" class="userHead"/>	
 						<div class="userRight">
 							<div class="messageInfo">
 								<span>风中追风</span>
@@ -191,7 +202,7 @@
 						</div>
 					</div>
 					<div class="chatInfo">
-						<img src="/static/images/head.png" class="userHead"/>	
+						<img src="/static/images/youke0.png" class="userHead"/>	
 						<div class="userRight">
 							<div class="messageInfo">
 								<span>风中追风</span>
@@ -204,7 +215,7 @@
 						</div>
 					</div>
 					<div class="chatInfo">
-						<img src="/static/images/head.png" class="userHead"/>	
+						<img src="/static/images/youke0.png" class="userHead"/>	
 						<div class="userRight">
 							<div class="messageInfo">
 								<span>风中追风</span>
@@ -217,7 +228,7 @@
 						</div>
 					</div>
 					<div class="chatInfo">
-						<img src="/static/images/head.png" class="userHead"/>	
+						<img src="/static/images/youke0.png" class="userHead"/>	
 						<div class="userRight">
 							<div class="messageInfo">
 								<span>风中追风</span>
@@ -230,7 +241,7 @@
 						</div>
 					</div>
 					<div class="chatInfo">
-						<img src="/static/images/head.png" class="userHead"/>	
+						<img src="/static/images/youke0.png" class="userHead"/>	
 						<div class="userRight">
 							<div class="messageInfo">
 								<span>风中追风</span>
@@ -243,7 +254,7 @@
 						</div>
 					</div>
 					<div class="chatInfo">
-						<img src="/static/images/head.png" class="userHead"/>	
+						<img src="/static/images/youke0.png" class="userHead"/>	
 						<div class="userRight">
 							<div class="messageInfo">
 								<span>风中追风</span>
@@ -256,7 +267,7 @@
 						</div>
 					</div>
 					<div class="chatInfo">
-						<img src="/static/images/head.png" class="userHead"/>	
+						<img src="/static/images/youke0.png" class="userHead"/>	
 						<div class="userRight">
 							<div class="messageInfo">
 								<span>风中追风</span>
@@ -269,7 +280,7 @@
 						</div>
 					</div>
 					<div class="chatInfo">
-						<img src="/static/images/head.png" class="userHead"/>	
+						<img src="/static/images/youke0.png" class="userHead"/>	
 						<div class="userRight">
 							<div class="messageInfo">
 								<span>风中追风</span>
@@ -304,7 +315,7 @@
 				<p>视频直播</p>
 			</div>
 			<div class="videoLive">
-				
+				<gs:video-live id="videoComponent" site="shrz888.gensee.com" ctx="webcast" ownerid="0c870b0f9ebb46318bdac9de97e4eae3" uname="" authcode="" class="gs-sdk-widget"><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" id="_GS_FLASH_ID_videoComponent" width="100%" height="100%" codebase="https://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab#version=11.1.0.0">	<param name="movie" value="http://static.gensee.com/webcast/static/sdk/flash/GenseeEasyLive.swf?160426">	<param name="wmode" value="transparent">	<param name="quality" value="high">	<param name="bgcolor" value="#000000">	<param name="allowScriptAccess" value="always">	<param name="allowFullScreen" value="true">	<param name="flashvars" value="sc=0&amp;entry=http%3A%2F%2Fshrz888.gensee.com%2Fwebcast&amp;code=0c870b0f9ebb46318bdac9de97e4eae3__766b5bff0fc44f2f80e1731ab63c2882&amp;lang=&amp;nickName=visitor_wMKM5a&amp;httpMode=false&amp;group=&amp;widgetid=videoComponent&amp;userdata=&amp;showCBar=&amp;backURI=&amp;ver=4.0&amp;publicChat=&amp;init=&amp;liveImprovedMode=false&amp;visible=true&amp;embedNetSettings=true&amp;batchRecChat=false&amp;fullscreen=false&amp;staticPrefix=http%3A%2F%2Fstatic.gensee.com%2Fwebcast">	<embed src="http://static.gensee.com/webcast/static/sdk/flash/GenseeEasyLive.swf?160426" quality="high" bgcolor="#000000" wmode="transparent" width="100%" height="100%" name="_GS_FLASH_ID_videoComponent" align="middle" play="true" loop="false" allowscriptaccess="always" allowfullscreen="true" type="application/x-shockwave-flash" flashvars="sc=0&amp;entry=http%3A%2F%2Fshrz888.gensee.com%2Fwebcast&amp;code=0c870b0f9ebb46318bdac9de97e4eae3__766b5bff0fc44f2f80e1731ab63c2882&amp;lang=&amp;nickName=visitor_wMKM5a&amp;httpMode=false&amp;group=&amp;widgetid=videoComponent&amp;userdata=&amp;showCBar=&amp;backURI=&amp;ver=4.0&amp;publicChat=&amp;init=&amp;liveImprovedMode=false&amp;visible=true&amp;embedNetSettings=true&amp;batchRecChat=false&amp;fullscreen=false&amp;staticPrefix=http%3A%2F%2Fstatic.gensee.com%2Fwebcast" pluginspage="http://www.adobe.com/go/getflashplayer">	</object></gs:video-live>
 			</div>
 			<div class="banner"> 
 				<div class="swiper-container">
@@ -343,10 +354,18 @@
 			<a class="shearico" href="javascript:void(0);"  style="background-position-x:-93px;"></a>
 		</div>
 	</div>
+	<div class="mousemenu">
+		<ul>
+			<li class="aite">@他(她)</li>
+		</ul>
+	</div>
 	<script type="text/javascript" src="/static/js/jquery.js"></script>
-	<script type="text/javascript" src="/static/layui.js"></script>
+
+	<script type="text/javascript" src="/static/js/layer/layer.js"></script>
 	<script type="text/javascript" src="/static/js/index.js"></script>
 	<script type="text/javascript" src="/static/js/swiper.js"></script>
+	<script type="text/javascript" src="/static/js/socket.js"></script>
+	<script type="text/javascript" src="/static/js/msg.js"></script>
 	<script>
     var swiper = new Swiper('.swiper-container', {
         pagination: '.swiper-pagination',
@@ -359,15 +378,17 @@
     });
 	
 	function login(){
-		layui.use('layer',function(){
-			var layer = layui.layer;
 			layer.open({
 				title:false,
 				type:2,
 				content:'{:url("User/login")}',
 				area:['378px','530px'],
 			});
-		});
+	}
+
+	function logout(){
+	    localStorage.clear();
+	    location.href="{:url('User/logout')}";
 	}
 
     //表情包
@@ -407,6 +428,29 @@
         });
 
     }
-    </script>
+
+    if(typeof(WebSocket) !== 'function' || typeof localStorage !== 'object'){
+        layer.msg('浏览器版本过低,建议使用最新版本的浏览器！');
+    }
+    //获取用户信息
+	var user = localStorage.getItem('user');
+
+    if(user == null || user == ''){
+        $.post('{:url("Index/getUserInfo")}',function(result){
+            localStorage.setItem('user',result);
+            result = JSON.parse(result);
+            setUserInfo(result);
+        });
+	}else{
+        user = JSON.parse(user);
+        setUserInfo(user);
+	}
+
+    /*window.onbeforeunload = function(){
+        return '确定离开此页面吗';
+    }*/
+
+
+	</script>
 </body>
 </html>

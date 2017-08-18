@@ -213,6 +213,9 @@ a{cursor:pointer;}
 	padding:8px 0px 8px 0px;
 	position:relative;
 }
+.column1 .userList li:hover{
+	background: #6cb6db;
+}
 .column1 .userList .userSearch{
 	height:25px;
 }
@@ -492,6 +495,7 @@ a{cursor:pointer;}
 }
 .column3 .videoLive{
 	width:100%;
+	height:400px;
 	background:red;
 }
 .column3 .banner{
@@ -521,3 +525,24 @@ a{cursor:pointer;}
     padding: 5px 13px;
 }
 /*底部样式结束*/
+
+/*鼠标右键菜单样式*/
+.mousemenu{
+	position: absolute;
+	background: #ffffff;
+	width:80px;
+	display:none;
+	border:10px;
+	padding:2px;
+	border:1px solid gray;
+}
+.mousemenu li{
+	text-align: center;
+	font-size:12px;
+}
+.mousemenu li:hover{
+	background: #27abff;
+}
+.aiteuser{
+	color:#5CACEE;
+}

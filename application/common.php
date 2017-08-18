@@ -52,3 +52,21 @@ if (!function_exists('get_client_ip')) {
         return $ip[$type];
     }
 }
+
+if(!function_exists('userArray')){
+    /**
+     * 返回规定格式的用户信息数组
+     * @param nickname 用户昵称
+     * @param level   用户等级
+     * @param head    用户头像
+     * @return json
+     */
+    function userArray($nickname='',$level='',$head='',$levelname){
+        return array(
+            'nickname'=>$nickname,
+            'level'=>$level,
+            'head'=>$head,
+            'levelname'=>$levelname
+        );
+    }
+}

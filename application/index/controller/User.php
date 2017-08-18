@@ -17,9 +17,11 @@ class User extends Controller
 
             $data = input('post.');
             $user = model('user');
-            if($user->login($data)){
+            $userGet = $user->login($data);
+            if($userGet){
                 $arr['status'] = 'success';
                 $arr['msg'] = '登录成功';
+                $arr['user'] = userArray($userGet['nickname'],$userGet['level'],$userGet['head'],$userGet['profile']['name']);
             }else{
                 $arr['status'] = 'error';
                 $arr['msg'] = '用户名或密码不正确';
@@ -37,9 +39,10 @@ class User extends Controller
             if($this->check_sms($data['code'])){
                 $user = model('user');
                 $result = $user->add($data);
-                if(empty($result)){
+                if(is_array($result)){
                     $arr['status'] = 'success';
                     $arr['msg'] = '注册成功';
+                    $arr['user'] = $result;
                 }else{
                     $arr['status'] = 'error';
                     $arr['msg'] = $result;
@@ -53,7 +56,7 @@ class User extends Controller
 
     }
 
-    public function check_sms($code=''){
+    public function check_sms($code=''){return true;
         if(!empty($code) && strlen($code)==4){
             return session('sms.code')==$code?true:false;
         }

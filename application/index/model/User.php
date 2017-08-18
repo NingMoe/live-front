@@ -46,30 +46,45 @@ class User extends Model
             $arr = [
                 'uname'=>$data['uname'],
                 'upwd'=>Hash::make((string)$data['upwd']),
-                'head'=>'head.png',
+                'head'=>'/static/images/youke'.rand(0,5).'.png',
                 'nickname'=>$data['nickname'],
                 'level'=>1
             ];
             $user = new User($arr);
-            session('user',$arr);
-            $user->save();
+            if($user->save()){
+                $level = model('level');
+                $le = $level->getLevel($arr['level']);
+                $arr['profile'] = $le;
+                session('user',$arr);
+                return $arr;
+            }else{
+                return false;
+            }
+        }else{
+            return $validate->getError();
         }
-        return $validate->getError();
+
 
 
     }
 
     public function login($data){
-        $user = User::get(['uname'=>$data['uname']]);
+        $user = User::get(['uname'=>$data['uname']],'profile')->toArray();
         if($user!=NULL || !empty($user)){
-            if(Hash::check($data['upwd'],$user->data['upwd'])){
-                session('user',$user->data);
-                return true;
+            if(Hash::check($data['upwd'],$user['upwd'])){
+                session('user',$user);
+                return $user;
             }else{
                 return false;
             }
         }else{
             return false;
         }
+    }
+
+    //关联查找
+    public function profile()
+    {
+        return $this->hasOne('Level','level','level');
     }
 }

@@ -9,12 +9,13 @@
 namespace app\push\controller;
 
 
+use think\Cache;
 use think\worker\Server;
-
+use think\Controller;
 class Worker extends Server
 {
     protected $socket = 'websocket://127.0.0.1:2346';
-
+    protected static $user   = array();
     /**
      * 收到信息
      * @param $connection
@@ -22,7 +23,20 @@ class Worker extends Server
      */
     public function onMessage($connection, $data)
     {
-        $connection->send('我收到你的信息了');
+        $data = json_decode($data,true);
+        switch($data['type']){
+
+            case 0 :
+                //连接建立成功存储用户信息
+                self::$user[$connection->id]->userInfo = $data;
+                break;
+
+            case 1 :
+                //消息推送
+                $this->sendMsg($connection,$data);
+                break;
+
+        }
     }
 
     /**
@@ -31,7 +45,9 @@ class Worker extends Server
      */
     public function onConnect($connection)
     {
-
+        self::$user[$connection->id] = $connection;
+        //推送人数
+        $this->pushPeople();
     }
 
     /**
@@ -40,7 +56,9 @@ class Worker extends Server
      */
     public function onClose($connection)
     {
-
+        unset(self::$user[$connection->id]);
+        //推送人数
+        $this->pushPeople();
     }
 
     /**
@@ -62,4 +80,33 @@ class Worker extends Server
     {
 
     }
+
+    /**
+     * 推送在线人数
+     */
+    public function pushPeople(){
+
+    }
+
+
+    /**
+      * 开始推送消息
+     */
+    public function sendMsg($connection,$data){
+       if($data['level']>=9){
+           //如果等级大于等于9级直接推送给所有用户
+           foreach(self::$user as $v){
+               $this->save($data);
+               $v->send(json_decode($data));
+           }
+
+       }
+    }
+
+    //保存消息
+    public function save($data){
+        $msg = model('chatcontents');
+        $msg->add($data);
+    }
+
 }
