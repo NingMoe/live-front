@@ -14,8 +14,15 @@ ws.onopen = function(msg){
 
 //处理消息
 ws.onmessage = function(e){
-
-   console.log(e.data);
+   var json_data = e.data;
+   var data = JSON.parse(e.data);
+   switch(data.type){
+       case 1:
+           data.msg += '<div class="escdata" attr="'+escape(json_data)+'"></div></div>';
+           $('.chat').append(data.msg);
+           scrollBar();
+           break;
+   }
 
 }
 
@@ -23,3 +30,4 @@ ws.onmessage = function(e){
 ws.onerror = function(){
    console.log('聊天服务器连接失败');
 }
+

@@ -31,7 +31,7 @@ function processMsg(message){
 
 //拼装消息
 function packageMsg(user,msg){
-    var contents = '<div class="chatInfo">';
+    var contents = '<div class="chatInfo" id="'+user.uid+'">';
     contents += '<img src="'+user.head+'" class="userHead">';
     contents += '<div class="userRight">';
     contents += '<div class="messageInfo">';
@@ -41,7 +41,6 @@ function packageMsg(user,msg){
     contents += '</div>';
     contents += '<div class="messageContent">';
     contents += '<span>'+msg+'</span>';
-    contents += '</div>';
     contents += '</div>';
     contents += '</div>';
     return contents;

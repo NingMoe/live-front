@@ -74,6 +74,32 @@ $('.aite').mousedown(function(){
 	$('#editor').html(con);
 });
 
+//机器人
+$('#jiqi').change(function(){
+	var nickname = $(this).find('option:selected').attr('name');
+	var levelname = $(this).find('option:selected').attr('level');
+    var level = $(this).find('option:selected').val();
+	var user  = JSON.parse(localStorage.getItem('user'));
+	var cur   = $(this).find('option:selected').attr('id');
+	user['nickname'] = nickname;
+	user['levelname'] = levelname;
+	user['level']  = level;
+	if(cur=='current_robot'){
+        user['ischeck']  = false;
+	}else{
+        user['ischeck']  = true;
+	}
+	localStorage.setItem('user',JSON.stringify(user));
+});
+$('.pass').live('click',function(){
+	var data = $(this).siblings('.escdata').attr('attr');
+	$(this).parent('.chatInfo').find('.pass').remove();
+	data = unescape(data);
+	data = JSON.parse(data);
+	data['ischeck']=true;
+	ws.onopen(JSON.stringify(data));
+});
+
 $(window).resize(function(){
 
 	resetBase();//窗口改变时,重新计算元素高度
@@ -106,7 +132,7 @@ function resetBase(){
 	var column0 = 70;
 	var column1 = 220;
 	var column2 = 0;
-	var margin  = 40.5;
+	var margin  = 45;//40.5
 	
 	var videoWidth = winWidth-column0-column1-column2-margin;
 	$('.column3').width(videoWidth*0.6);
@@ -141,7 +167,7 @@ function bg(e){
 }
 
 //设置用户信息
-function setUserInfo(user){
+function setUserInfo(user,flag){
     $('#userHead').attr('src',user['head']);
     $('#userName').html(user['nickname']);
 }

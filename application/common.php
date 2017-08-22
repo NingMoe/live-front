@@ -61,12 +61,13 @@ if(!function_exists('userArray')){
      * @param head    用户头像
      * @return json
      */
-    function userArray($nickname='',$level='',$head='',$levelname){
+    function userArray($nickname='',$level='',$head='',$levelname,$uid){
         return array(
             'nickname'=>$nickname,
             'level'=>$level,
             'head'=>$head,
-            'levelname'=>$levelname
+            'levelname'=>$levelname,
+            'uid'=>$uid
         );
     }
 }

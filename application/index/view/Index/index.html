@@ -15,6 +15,9 @@
 <body style="background:url('/static/images/bg.jpg')">
 	<div class="header">
 		<div class="logo"></div>
+		<div class="guanliyuan">
+			<a href="javascript:jiqiren()" class="layui-btn layui-btn-normal">机器人</a>
+		</div>
 		<div class="hr">
 			<ul>
 				{notempty name="user.uname"}
@@ -188,110 +191,7 @@
 					</div>
 				</div>
 				<div class="chat">
-					<div class="chatInfo">
-						<img src="/static/images/youke0.png" class="userHead"/>	
-						<div class="userRight">
-							<div class="messageInfo">
-								<span>风中追风</span>
-								<span>[会员]</span>
-								<span>16:37</span>
-							</div>
-							<div class="messageContent">
-								<span>的撒多</span>
-							</div>
-						</div>
-					</div>
-					<div class="chatInfo">
-						<img src="/static/images/youke0.png" class="userHead"/>	
-						<div class="userRight">
-							<div class="messageInfo">
-								<span>风中追风</span>
-								<span>[会员]</span>
-								<span>16:37</span>
-							</div>
-							<div class="messageContent">
-								<span>的撒多</span>
-							</div>
-						</div>
-					</div>
-					<div class="chatInfo">
-						<img src="/static/images/youke0.png" class="userHead"/>	
-						<div class="userRight">
-							<div class="messageInfo">
-								<span>风中追风</span>
-								<span>[会员]</span>
-								<span>16:37</span>
-							</div>
-							<div class="messageContent">
-								<span>的撒多</span>
-							</div>
-						</div>
-					</div>
-					<div class="chatInfo">
-						<img src="/static/images/youke0.png" class="userHead"/>	
-						<div class="userRight">
-							<div class="messageInfo">
-								<span>风中追风</span>
-								<span>[会员]</span>
-								<span>16:37</span>
-							</div>
-							<div class="messageContent">
-								<span>的撒多</span>
-							</div>
-						</div>
-					</div>
-					<div class="chatInfo">
-						<img src="/static/images/youke0.png" class="userHead"/>	
-						<div class="userRight">
-							<div class="messageInfo">
-								<span>风中追风</span>
-								<span>[会员]</span>
-								<span>16:37</span>
-							</div>
-							<div class="messageContent">
-								<span>的撒多</span>
-							</div>
-						</div>
-					</div>
-					<div class="chatInfo">
-						<img src="/static/images/youke0.png" class="userHead"/>	
-						<div class="userRight">
-							<div class="messageInfo">
-								<span>风中追风</span>
-								<span>[会员]</span>
-								<span>16:37</span>
-							</div>
-							<div class="messageContent">
-								<span>的撒多</span>
-							</div>
-						</div>
-					</div>
-					<div class="chatInfo">
-						<img src="/static/images/youke0.png" class="userHead"/>	
-						<div class="userRight">
-							<div class="messageInfo">
-								<span>风中追风</span>
-								<span>[会员]</span>
-								<span>16:37</span>
-							</div>
-							<div class="messageContent">
-								<span>的撒多</span>
-							</div>
-						</div>
-					</div>
-					<div class="chatInfo">
-						<img src="/static/images/youke0.png" class="userHead"/>	
-						<div class="userRight">
-							<div class="messageInfo">
-								<span>风中追风</span>
-								<span>[会员]</span>
-								<span>16:37</span>
-							</div>
-							<div class="messageContent">
-								<span>的撒多</span>
-							</div>
-						</div>
-					</div>
+
 				</div>
 			</div>
 			<div class="serverQQ">
@@ -299,6 +199,14 @@
 			</div>
 			<div class="toolbar">
 				<a class="face" href="javascript:showFacePanel(this,'#editor')"></a>
+				{if condition="($user.level>6)"}
+					<select name="jiqi" id="jiqi">
+						<option id="current_robot" value="{$user.profile.level}" level="{$user.level}" name="{$user.nickname}">{$user.nickname}----{$user.profile.name}</option>
+						{volist name="role" id="vo"}
+						<option value="{$vo.level}" level="{$vo.level}" name="{$vo.name}">{$vo.name}----{$vo.level_name}</option>
+						{/volist}
+					</select>
+				{/if}
 			</div>
 			
 			<div class="EnMessage">
@@ -433,6 +341,7 @@
         layer.msg('浏览器版本过低,建议使用最新版本的浏览器！');
     }
     //获取用户信息
+
 	var user = localStorage.getItem('user');
 
     if(user == null || user == ''){
@@ -450,7 +359,18 @@
         return '确定离开此页面吗';
     }*/
 
+	</script>
 
+
+	<script>
+		function jiqiren(){
+            layer.open({
+                title:false,
+                area:['500px','300px'],
+                content:'{:url("yiqiu/Jiqiren/index")}',
+				type:2
+            });
+		}
 	</script>
 </body>
 </html>
