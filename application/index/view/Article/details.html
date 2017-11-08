@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .wrap{
+            width:800px;
+            margin:0 auto;
+            height:auto;
+        }
+        h1{
+            text-align: center;
+        }
+        .wrap-state{
+            text-align: center;
+            margin-bottom: 10px;
+        }
+    </style>
+    <link rel="stylesheet" href="/static/layui/css/layui.css"  media="all">
+    <script src="/static/layui/layui.js"></script>
+    <script src="/static/js/jquery.js"></script>
+</head>
+<body>
+<div class="wrap">
+    <h1 style="font-size: 30px;font-weight: 600;margin-bottom:10px;">{$article.title}</h1>
+    <div class="wrap-state">
+        <span>发布时间：{$article.create_time}</span>
+        <span style="margin-left:20px;margin-right:20px;"><i class="layui-icon"></i>&nbsp;{$name.room_name}</span>
+        {notempty name="$article.url"}
+        <a onclick="downloadNumber('{$article.article_id}')" href="{$article.url}" style="background: #FF5722;color:white;border-radius: 5px;">下载附件</a>
+        {/notempty}
+    </div>
+    {$article.content}
+</div>
+<script>
+    function downloadNumber(id){
+        $.post('{:url("Index/Article/downloadNumber")}',{id:id},function(data){
+            console.log(data);
+        });
+    }
+</script>
+</body>
+</html>

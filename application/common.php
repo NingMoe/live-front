@@ -56,12 +56,9 @@ if (!function_exists('get_client_ip')) {
 if(!function_exists('userArray')){
     /**
      * 返回规定格式的用户信息数组
-     * @param nickname 用户昵称
-     * @param level   用户等级
-     * @param head    用户头像
      * @return json
      */
-    function userArray($nickname='',$level='',$head='',$levelname,$uid){
+    function userArray($nickname='',$level='',$head='',$levelname='',$uid=''){
         return array(
             'nickname'=>$nickname,
             'level'=>$level,
@@ -69,5 +66,31 @@ if(!function_exists('userArray')){
             'levelname'=>$levelname,
             'uid'=>$uid
         );
+    }
+}
+
+
+if(!function_exists('setSession')){
+    /**
+     * 设置session
+     * $arr 数组格式
+     */
+    function setSession($arr=null){
+       if(empty($arr['profile'])){
+           $id = rand(1000000,9999999);
+           session('user',array(
+               'nickname'=>'游客'.$id,
+               'level'=>1,
+               'time'=>time(),
+               'head'=>'/static/images/youke'.rand(0,5).'.png',
+               'login_time'=>time(),
+               'uname'=>time(),
+               'profile'=>$arr,
+               'login_ip'=>get_client_ip(0,true)
+           ));
+       }else{
+           $arr['login_ip'] = get_client_ip(0,true);
+           session('user',$arr);
+       }
     }
 }

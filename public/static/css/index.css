@@ -1,11 +1,4 @@
-/*banner滑动插件*/
-  .swiper-container {
-        width: 100%;
-        height: 100%;
-    }
-    .swiper-slide {
-        overflow: hidden;
-    }
+
 
 
 
@@ -20,13 +13,13 @@
 　　clear:both;
 }
 a{cursor:pointer;}
+
 /* 滚动条滑块 */
-::-webkit-scrollbar {
-    width: 5px; 
-}
-::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-}
+::-webkit-scrollbar-track-piece{width:5px;background-color:#8F8F8F ;  border-radius: 10px;}
+
+::-webkit-scrollbar{width:8px;height:6px ; }
+
+::-webkit-scrollbar-thumb{height:50px;background:#707070;   cursor:pointer;border-radius: 10px;}
 
 
 
@@ -38,6 +31,7 @@ a{cursor:pointer;}
 	background: rgba(0, 0, 0, 0.1);
 }
 .header .guanliyuan{
+	position: relative;
 	width:500px;
 	height:100%;
 	float:left;
@@ -152,6 +146,7 @@ a{cursor:pointer;}
 	background-color:rgba(0, 0, 0, 0.1);
 	margin-right:10px;
 	float:left;
+	overflow: hidden;
 }
 .column0 img{
 	width:45px;
@@ -386,7 +381,7 @@ a{cursor:pointer;}
 .column2 .chat .chatInfo{
 	position: relative;
 	padding:5px 10px;
-	overflow:hidden;
+	overflow: hidden;
 }
 .column2 .chat .chatInfo .userHead{
 	display: block;
@@ -415,26 +410,45 @@ a{cursor:pointer;}
     padding: 5px 8px;
     float: left;
     word-break: break-all;
-	width:22em;
     font-size: 14px!important;
 }
-.column2 .chat .chatInfo .messageContent span{
-	font-family: SimSun;
-    font-size: 12px;
-    font-style: normal;
-    text-decoration: none;
+.column2 .chat .chatInfo .messageInfo span{
+	margin:0 3px;
 }
 .column2 .serverQQ{
 	width:100%;
 	height:40px;
 	line-height:40px;
 }
-.column2 .serverQQ a{
-	color:white;
-	margin-left:10px;
-	font-size:16px;
-	
+.column2 .serverQQ ul{
+	width:100%;
+	height:100%;
+	text-align: center;
 }
+.column2 .serverQQ ul li{
+	float:left;
+	width:20%;
+	height:100%;
+}
+.column2 .serverQQ .kefuqq{
+	color: #127dec;
+	background: #fff!important;
+	display: inline-block;
+	margin-bottom: 0;
+	font-weight: 400;
+	text-align: center;
+	vertical-align: middle;
+	touch-action: manipulation;
+	cursor: pointer;
+	border: 1px solid #127dec;
+	white-space: nowrap;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857;
+	border-radius: 2px;
+	user-select: none;
+}
+
 .column2 .toolbar{
 	background-color: rgba(255, 255, 255, 0.50);
     height: 35px;
@@ -448,6 +462,15 @@ a{cursor:pointer;}
 	top:5px;
 	left:5px;
 	background: url(../images/icon.png) -95px -166px no-repeat;
+}
+.column2 .toolbar #upload{
+	width:25px;
+	height:25px;
+	display:block;
+	position:absolute;
+	top:5px;
+	left:35px;
+	background: url(../images/icon.png) -65px -166px no-repeat;
 }
 .column2 .EnMessage{
 	background-color: #fff;
@@ -463,7 +486,7 @@ a{cursor:pointer;}
     overflow-y: auto;
     overflow-x: hidden;
     word-break: break-all;
-	width:20em;
+	width:30em;
 }
 .column2 .sendBtn{
 	cursor: pointer;
@@ -505,8 +528,15 @@ a{cursor:pointer;}
 	background:red;
 }
 .column3 .banner{
+	position: relative;
 	height:115px;
 	width:100%;
+	background: #eee;
+	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	color:#000;
+	margin: 0;
+	padding: 0;
 }
 /*主体样式结束*/
 
@@ -537,17 +567,21 @@ a{cursor:pointer;}
 	position: absolute;
 	background: #ffffff;
 	width:80px;
-	display:none;
 	border:10px;
 	padding:2px;
 	border:1px solid gray;
+	height:100px;
+	display: none;
 }
-.mousemenu li{
+.mousemenu li:not(:first-child){
 	text-align: center;
 	font-size:12px;
+	margin-bottom: 3px;
+	cursor: pointer;
 }
-.mousemenu li:hover{
+.mousemenu li:not(:first-child):hover{
 	background: #27abff;
+	color:white;
 }
 .aiteuser{
 	color:#5CACEE;
@@ -555,7 +589,7 @@ a{cursor:pointer;}
 #jiqi{
 	position: absolute;
 	top: 7px;
-	left:65px;
+	right:5px;
 }
 .pass{
 	position:absolute;
@@ -573,4 +607,72 @@ a{cursor:pointer;}
 }
 .layui-icon:hover{
 	color:red;
+}
+.escdata{
+	display: none;
+}
+.case1{
+	position:absolute;
+	background: red;
+	border-radius:5px;
+	cursor: pointer;
+	color:white;
+	right:85px;
+	top:5px;
+}
+.case2{
+	position:absolute;
+	background: red;
+	border-radius:5px;
+	cursor: pointer;
+	color:white;
+	right:50px;
+	top:5px;
+}
+.feiping{
+	position:absolute;
+	top:30%;
+}
+.feiping div{
+	font-size:30px;
+	color:red;
+	font-weight: bold;
+}
+.setup{
+	position: absolute;
+	top:0;
+	left:0;
+	width:80px;
+	background: #333;
+	text-align: center;
+	z-index: 999;
+}
+.setup li a{
+	color:white;
+}
+.sendImages{
+	max-width: 200px;
+	max-height: 200px;
+}
+/*建平仓*/
+.depot{
+	background: #ED2913;
+	height:40px;
+	line-height: 40px;
+	border-radius:10px;
+	margin-top:10px;
+}
+.depot img{
+	height:32px;
+	margin-left:10px;
+}
+.depot span{
+	color:white;
+	margin-left:10px;
+	font-weight: bold;
+}
+.depot a{
+	color:#009688;
+	margin-left:10px;
+	font-weight: bold;
 }

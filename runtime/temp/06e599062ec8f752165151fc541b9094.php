@@ -1,0 +1,43 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:78:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\depot\pingcang_add.html";i:1510055226;}*/ ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>建仓提醒</title>
+    <link href="/static/layui/css/layui.css" rel="stylesheet" />
+    <script src="/static/layui/layui.js"></script>
+</head>
+<body>
+<form style="margin-top:30px;" class="layui-form" action="<?php echo url('Depot/pingcang_add'); ?>" method="post" id="aa">
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">平仓价</label>
+        <div class="layui-input-block">
+            <input type="text" name="pingcang" required  lay-verify="required" value="" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+    <input type="hidden" name="id" value="<?php echo $id; ?>">
+    <input type="hidden" name="goods_name" value="<?php echo $goods_name; ?>">
+</form>
+</body>
+<script>
+    layui.use(['form'], function(){
+        var form = layui.form;
+        var $ = layui.$;
+        //监听提交
+        form.on('submit(formDemo)', function(data){
+            console.log(data);
+        });
+
+    });
+</script>
+</html>

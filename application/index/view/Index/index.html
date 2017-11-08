@@ -2,49 +2,85 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title></title>
+	<title>{$roominfo.room_title}</title>
 	<meta name="viewport" content="width=device-width" />
-    <meta name="keywords" content="aaa" />
-    <meta name="Description" content="bbb" />
+    <meta name="keywords" content="{$roominfo.room_keyword}" />
+    <meta name="Description" content="{$roominfo.room_description}" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<link href="/static/css/swiper.css" rel="stylesheet" />
-	<link href="/static/css/layui.css" rel="stylesheet" />
+	<link href="/static/css/swiper-3.4.2.min.css" rel="stylesheet" />
+	<link href="/static/layui/css/layui.css" rel="stylesheet" />
 	<link href="/static/css/index.css" rel="stylesheet" />
 	<link href="/static/css/face.css" rel="stylesheet" />
+	<link rel="stylesheet" href="/static/css/barrager.css">
+	<style>
+		.swiper-container {
+			width: 100%;
+			height: 100%;
+
+		}
+		.swiper-slide {
+			text-align: center;
+			font-size: 18px;
+			background: #fff;
+
+			/* Center slide text vertically */
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			-webkit-justify-content: center;
+			justify-content: center;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			-webkit-align-items: center;
+			align-items: center;
+		}
+	</style>
 </head>
-<body style="background:url('/static/images/bg.jpg')">
+<body style="
+{notempty name="roominfo.room_bg"}
+background: url('{$roominfo.room_bg}')
+{else /}
+background: url('/static/images/bg.jpg')
+{/notempty}
+">
 	<div class="header">
 		<div class="logo"></div>
 		<div class="guanliyuan">
-			<a href="javascript:jiqiren()" class="layui-btn layui-btn-normal">机器人</a>
+			<ul class="setup">
+				{notempty name="$set"}
+				{foreach $set as $val}
+				<li class="layui-nav-item layui-this"><a href="javascript:popups(700,600,'/{$val.link}')">{$val['menu_name']}</a></li>
+				{/foreach}
+				{/notempty}
+            </ul>
+			{if condition="$user.profile['level'] egt 11"}
+			<span id="people_number" style="position:absolute;left:100px;background: #333;color:white;">正在统计人数..</span>
+			{/if}
 		</div>
 		<div class="hr">
 			<ul>
-				{notempty name="user.uname"}
 				<li>
 					<a href="#">
 						<img id="userHead" src="" alt="" />
 						<span id="userName"></span>
 					</a>
 				</li>
-				<li>
-					<a href="javascript:logout()">
-						退出
-					</a>
-				</li>
+				{if condition="$user.level>1"}
+					<li>
+						<a href="javascript:logout()">
+							退出
+						</a>
+					</li>
 					{else /}
-				<li>
-					<a href="#">
-						<img id="userHead" src="" alt="" />
-						<span id="userName"></span>
-					</a>
-				</li>
-				<li>
-					<a href="javascript:login()">
-						登录/注册
-					</a>
-				</li>
-				{/notempty}
+					<li>
+						<a href="javascript:popups(378,530,'/index/User/login')">
+							登录/注册
+						</a>
+					</li>
+				{/if}
 				<li class="gexinghua">
 					<a href="">
 						<img src="/static/images/layer.png" alt="" />
@@ -82,37 +118,37 @@
 		<div class="column0">
 			<ul>
 				<li>
-					<a href="#">
+					<a href="javascript:popups(800,500,'http://www.jin10.com/example/jin10.com.html')">
 						<img src="/static/images/menu_calendar.png" alt="" />
 						<p>财经日历</p>
 					</a>
 				</li>
 				<li>
-					<a href="#">
+					<a href="javascript:popups(1000,600,'/index/Depot/jiancang')">
 						<img src="/static/images/menu_notice.png" alt="" />
-						<p>及时策略</p>
+						<p>建仓提醒</p>
 					</a>
 				</li>
 				<li>
-					<a href="#">
+					<a href="javascript:popups(1000,600,'/index/Depot/pingcang')">
 						<img src="/static/images/menu_finance.png" alt="" />
-						<p>交易提示</p>
+						<p>平仓提醒</p>
 					</a>
 				</li>
 				<li>
-					<a href="#">
+					<a href="javascript:popups(1000,600,'/index/Article/index')">
 						<img src="/static/images/menu_vote.png" alt="" />
 						<p>葵花宝典</p>
 					</a>
 				</li>
-				<li>
-					<a href="#">
-						<img src="/static/images/menu_course.png" alt="" />
+				<li class="kcb">
+					<a href="javascript:void(0)">
+						<img onclick="artwork('.kcb')" src="/static/images/menu_course.png" layer-src="{$roominfo.room_kcb}" alt="" />
 						<p>课程安排</p>
 					</a>
 				</li>
-				<li>
-					<a href="#">
+				<li id="phone-tip" >
+					<a href="javascript:void(0)">
 						<img src="/static/images/menu_phone.png" alt="" />
 						<p>手机直播</p>
 					</a>
@@ -130,24 +166,14 @@
 						<input class="searchText" type="text" />
 						<a class="searchBtn" href=""></a>
 					</li>
-					<li class="userInfo" username="游客-30924553">
-						<img src="/static/images/youke0.png" class="avatar" />
-						<span class="nickname">游客-30924553</span>
-						<span class="time">08-08 11:51:37</span>
-						<img src="/static/images/level.png" class="groupion" />
-					</li>
-					<li class="userInfo" username="游客-30924554">
-						<img src="/static/images/youke0.png" class="avatar" />
-						<span class="nickname">游客-30924554</span>
-						<span class="time">08-08 11:51:37</span>
-						<img src="/static/images/level.png" class="groupion" />
-					</li>
-					<li class="userInfo" username="游客-30924555">
-						<img src="/static/images/youke0.png" class="avatar" />
-						<span class="nickname">游客-30924555</span>
-						<span class="time">08-08 11:51:37</span>
-						<img src="/static/images/level.png" class="groupion" />
-					</li>
+					{foreach $userlist as $vo}
+						<li class="userInfo" username="游客-30924553" id="{$vo.clientId}">
+							<img src="{$vo.head}" class="avatar" />
+							<span class="nickname">{$vo.nickname}</span>
+							<span class="time">{$vo.login_time|date='Y-m-d H:i:s',###}</span>
+							<img src="{$vo.profile['img']}" class="groupion" />
+						</li>
+					{/foreach}
 				</ul>
 			</div>
 			<div style="display:none;" class="userListWrap">
@@ -165,6 +191,7 @@
 			</div>
 		</div>
 		<div class="column2">
+			<!--
 			<div class="tableWrap">
 				<ul class="table">
 					<li>大厅</li>
@@ -172,10 +199,11 @@
 				</ul>
 			</div>
 			<div class="notify">
-				<marquee direction=left>fds</marquee>
+				<marquee direction=left>{$roominfo.room_notice}</marquee>
 			</div>
+			-->
 			<div class="message">
-				<div class="activity">
+				<div class="activity" style="display: none;">
 					<div class="hongbao">
 						<a href="">
 							<img src="/static/images/g_hb.gif" />
@@ -195,15 +223,32 @@
 				</div>
 			</div>
 			<div class="serverQQ">
-				
+				<ul>
+					<li style="">
+						<a onclick="qq(this)" class="kefuqq" href="javascript:void(0)">高级助理</a>
+					</li>
+					<li style="">
+						<a onclick="qq(this)" class="kefuqq" href="javascript:void(0)">错单解套</a>
+					</li>
+					<li style="">
+						<a onclick="qq(this)" class="kefuqq" href="javascript:void(0)">最新策略</a>
+					</li>
+					<li style="">
+						<a onclick="qq(this)" class="kefuqq" href="javascript:void(0)">在线客服</a>
+					</li>
+					<li style="">
+						<a onclick="qq(this)" class="kefuqq" href="javascript:void(0)">老师助理</a>
+					</li>
+				</ul>
 			</div>
 			<div class="toolbar">
 				<a class="face" href="javascript:showFacePanel(this,'#editor')"></a>
-				{if condition="($user.level>6)"}
+				<a id="upload"></a>
+				{if condition="$user.level>=8"}
 					<select name="jiqi" id="jiqi">
-						<option id="current_robot" value="{$user.profile.level}" level="{$user.level}" name="{$user.nickname}">{$user.nickname}----{$user.profile.name}</option>
+						<option id="current_robot" value="{$user.level}" levelname="{$user['profile']['name']}" level="{$user.level}" name="{$user.nickname}">{$user.nickname}----{$user.profile['name']}</option>
 						{volist name="role" id="vo"}
-						<option value="{$vo.level}" level="{$vo.level}" name="{$vo.name}">{$vo.name}----{$vo.level_name}</option>
+						<option value="{$vo.level}" level="{$vo.level}" levelname="{$vo.level_name}" name="{$vo.name}">{$vo.name}----{$vo.level_name}</option>
 						{/volist}
 					</select>
 				{/if}
@@ -223,30 +268,21 @@
 				<p>视频直播</p>
 			</div>
 			<div class="videoLive">
-				<gs:video-live id="videoComponent" site="shrz888.gensee.com" ctx="webcast" ownerid="0c870b0f9ebb46318bdac9de97e4eae3" uname="" authcode="" class="gs-sdk-widget"><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" id="_GS_FLASH_ID_videoComponent" width="100%" height="100%" codebase="https://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab#version=11.1.0.0">	<param name="movie" value="http://static.gensee.com/webcast/static/sdk/flash/GenseeEasyLive.swf?160426">	<param name="wmode" value="transparent">	<param name="quality" value="high">	<param name="bgcolor" value="#000000">	<param name="allowScriptAccess" value="always">	<param name="allowFullScreen" value="true">	<param name="flashvars" value="sc=0&amp;entry=http%3A%2F%2Fshrz888.gensee.com%2Fwebcast&amp;code=0c870b0f9ebb46318bdac9de97e4eae3__766b5bff0fc44f2f80e1731ab63c2882&amp;lang=&amp;nickName=visitor_wMKM5a&amp;httpMode=false&amp;group=&amp;widgetid=videoComponent&amp;userdata=&amp;showCBar=&amp;backURI=&amp;ver=4.0&amp;publicChat=&amp;init=&amp;liveImprovedMode=false&amp;visible=true&amp;embedNetSettings=true&amp;batchRecChat=false&amp;fullscreen=false&amp;staticPrefix=http%3A%2F%2Fstatic.gensee.com%2Fwebcast">	<embed src="http://static.gensee.com/webcast/static/sdk/flash/GenseeEasyLive.swf?160426" quality="high" bgcolor="#000000" wmode="transparent" width="100%" height="100%" name="_GS_FLASH_ID_videoComponent" align="middle" play="true" loop="false" allowscriptaccess="always" allowfullscreen="true" type="application/x-shockwave-flash" flashvars="sc=0&amp;entry=http%3A%2F%2Fshrz888.gensee.com%2Fwebcast&amp;code=0c870b0f9ebb46318bdac9de97e4eae3__766b5bff0fc44f2f80e1731ab63c2882&amp;lang=&amp;nickName=visitor_wMKM5a&amp;httpMode=false&amp;group=&amp;widgetid=videoComponent&amp;userdata=&amp;showCBar=&amp;backURI=&amp;ver=4.0&amp;publicChat=&amp;init=&amp;liveImprovedMode=false&amp;visible=true&amp;embedNetSettings=true&amp;batchRecChat=false&amp;fullscreen=false&amp;staticPrefix=http%3A%2F%2Fstatic.gensee.com%2Fwebcast" pluginspage="http://www.adobe.com/go/getflashplayer">	</object></gs:video-live>
+				<gs:video-live id="videoComponent" site="shrz888.gensee.com" ctx="webcast" ownerid="0c870b0f9ebb46318bdac9de97e4eae3" uname="" authcode="" class="gs-sdk-widget"><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" id="_GS_FLASH_ID_videoComponent" width="100%" height="100%" codebase="https://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab#version=11.1.0.0">	<param name="movie" value="http://static.gensee.com/webcast/static/sdk/flash/GenseeEasyLive.swf?160426">	<param name="wmode" value="transparent">	<param name="quality" value="high">	<param name="bgcolor" value="#000000">	<param name="allowScriptAccess" value="always">	<param name="allowFullScreen" value="true">	<param name="flashvars" value="sc=0&amp;entry=http%3A%2F%2Fshrz888.gensee.com%2Fwebcast&amp;code=0c870b0f9ebb46318bdac9de97e4eae3__f2557eea287a4c78916afc032a34632f&amp;lang=&amp;nickName=visitor_2EasGn&amp;httpMode=false&amp;group=&amp;widgetid=videoComponent&amp;userdata=&amp;showCBar=&amp;backURI=&amp;ver=4.0&amp;publicChat=&amp;init=&amp;liveImprovedMode=false&amp;visible=true&amp;embedNetSettings=true&amp;batchRecChat=false&amp;fullscreen=false&amp;staticPrefix=http%3A%2F%2Fstatic.gensee.com%2Fwebcast">	<embed src="http://static.gensee.com/webcast/static/sdk/flash/GenseeEasyLive.swf?160426" quality="high" bgcolor="#000000" wmode="transparent" width="100%" height="100%" name="_GS_FLASH_ID_videoComponent" align="middle" play="true" loop="false" allowscriptaccess="always" allowfullscreen="true" type="application/x-shockwave-flash" flashvars="sc=0&amp;entry=http%3A%2F%2Fshrz888.gensee.com%2Fwebcast&amp;code=0c870b0f9ebb46318bdac9de97e4eae3__f2557eea287a4c78916afc032a34632f&amp;lang=&amp;nickName=visitor_2EasGn&amp;httpMode=false&amp;group=&amp;widgetid=videoComponent&amp;userdata=&amp;showCBar=&amp;backURI=&amp;ver=4.0&amp;publicChat=&amp;init=&amp;liveImprovedMode=false&amp;visible=true&amp;embedNetSettings=true&amp;batchRecChat=false&amp;fullscreen=false&amp;staticPrefix=http%3A%2F%2Fstatic.gensee.com%2Fwebcast" pluginspage="http://www.adobe.com/go/getflashplayer">	</object></gs:video-live>
 			</div>
-			<div class="banner"> 
-				<div class="swiper-container">
-					<div class="swiper-wrapper">
-						<div class="swiper-slide">
-							<div class="swiper-zoom-container">
-								<img src="/static/images/largeNature1.jpg">
-							</div>
+			<div class="banner">
+				<div class="swiper-container swiper-container-horizontal">
+					<div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+						{foreach $banner as $val}
+						<div class="swiper-slide" style="width: 1080px; margin-right: 30px;">
+							<img src="{$val['img']}" alt="">
 						</div>
-						<div class="swiper-slide">
-							<div class="swiper-zoom-container">
-								<img src="/static/images/largeNature2.jpg">
-							</div>
-						</div>
-						<div class="swiper-slide">
-							<div class="swiper-zoom-container">
-								<img src="/static/images/largeNature3.jpg">
-							</div>
-						</div>
-
+						{/foreach}
 					</div>
 					<!-- Add Pagination -->
-					<div class="swiper-pagination"></div>
+					<div class="swiper-pagination">
+
+					</div>
 					<!-- Add Arrows -->
 					<div class="swiper-button-next"></div>
 					<div class="swiper-button-prev"></div>
@@ -256,43 +292,56 @@
 	</div>
 	<div class="footer">
 		<div class="fenxiang">
-			分享到：
-			<a class="shearico" href="javascript:void(0);"  style="background-position-x:-120px;"></a>
-			<a class="shearico" href="javascript:void(0);"  style="background-position-x:-150px;"></a>
-			<a class="shearico" href="javascript:void(0);"  style="background-position-x:-93px;"></a>
+		<!--
+			<a style="color:white;" href="javascript:void(0)">分享到</a>
+			<a class="shearico" href="javascript:void(0);" data-cmd="tsina" title="分享到新浪微博"  style="background-position-x:-120px;"></a>
+			<a class="shearico" href="javascript:void(0);" data-cmd="qzone" title="分享到QQ空间" style="background-position-x:-150px;"></a>
+			<a class="shearico" href="javascript:void(0);" data-cmd="tqq" title="分享到腾讯微博" style="background-position-x:-93px;"></a>
+		-->
+			<!-- JiaThis Button BEGIN -->
+			<div class="jiathis_style_24x24" style="margin-top:4px;">
+				<a class="jiathis_button_qzone"></a>
+				<a class="jiathis_button_tsina"></a>
+				<a class="jiathis_button_tqq"></a>
+				<a class="jiathis_button_weixin"></a>
+				<a class="jiathis_button_renren"></a>
+				<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+				<a class="jiathis_counter_style"></a>
+			</div>
+			<script type="text/javascript" src="http://v3.jiathis.com/code_mini/jia.js" charset="utf-8"></script>
+			<!-- JiaThis Button END -->
 		</div>
 	</div>
 	<div class="mousemenu">
 		<ul>
+			<li style="color:#FF5722;font-size: 12px;text-align: center;">游客32143244</li>
 			<li class="aite">@他(她)</li>
+			<li class="banned">踢出房间</li>
 		</ul>
 	</div>
+	<script type="text/javascript" src="/static/js/config.js"></script>
 	<script type="text/javascript" src="/static/js/jquery.js"></script>
-
-	<script type="text/javascript" src="/static/js/layer/layer.js"></script>
+	<script type="text/javascript" src="/static/js/jquery.barrager.js"></script>
+    <script type="text/javascript" src="/static/js/buju.js"></script>
+	<script type="text/javascript" src="/static/js/md5.js"></script>
+	<script type="text/javascript" src="/static/layui/layui.all.js"></script>
 	<script type="text/javascript" src="/static/js/index.js"></script>
-	<script type="text/javascript" src="/static/js/swiper.js"></script>
+	<script type="text/javascript" src="/static/js/swiper-3.4.2.jquery.min.js"></script>
 	<script type="text/javascript" src="/static/js/socket.js"></script>
 	<script type="text/javascript" src="/static/js/msg.js"></script>
 	<script>
-    var swiper = new Swiper('.swiper-container', {
-        pagination: '.swiper-pagination',
-        paginationClickable: true,
-        nextButton: '.swiper-button-next',
-        prevButton: '.swiper-button-prev',
-        spaceBetween: 30,
-        hashnav: true,
-        hashnavWatchState: true
-    });
-	
-	function login(){
-			layer.open({
-				title:false,
-				type:2,
-				content:'{:url("User/login")}',
-				area:['378px','530px'],
-			});
-	}
+
+        var swiper = new Swiper('.swiper-container', {
+            pagination: '.swiper-pagination',
+            nextButton: '.swiper-button-next',
+            prevButton: '.swiper-button-prev',
+            paginationClickable: true,
+            spaceBetween: 30,
+            centeredSlides: true,
+            autoplay: 4000,
+            autoplayDisableOnInteraction: false
+        });
+
 
 	function logout(){
 	    localStorage.clear();
@@ -341,36 +390,74 @@
         layer.msg('浏览器版本过低,建议使用最新版本的浏览器！');
     }
     //获取用户信息
-
-	var user = localStorage.getItem('user');
-
-    if(user == null || user == ''){
-        $.post('{:url("Index/getUserInfo")}',function(result){
-            localStorage.setItem('user',result);
-            result = JSON.parse(result);
-            setUserInfo(result);
-        });
-	}else{
-        user = JSON.parse(user);
-        setUserInfo(user);
-	}
+	var user = '{$userinfo}';
+	localStorage.setItem('user',user);
+	setUserInfo(JSON.parse(user));
 
     /*window.onbeforeunload = function(){
         return '确定离开此页面吗';
     }*/
 
+        //执行实例
+		var upload = layui.upload;
+        upload.render({
+            elem: '#upload' //绑定元素
+            ,url: '{:url("Upload/image")}' //上传接口
+            ,done: function(res){
+                //上传完毕回调
+                var img = '<img class="sendImages" onclick="artwork(`.messageContent`)" src="'+res.src+'"><br />';
+				$('#editor').append(img);
+			}
+            ,error: function(){
+                //请求异常回调
+            }
+        });
 	</script>
 
 
 	<script>
-		function jiqiren(){
+
+		function popups(width,height,url){
             layer.open({
                 title:false,
-                area:['500px','300px'],
-                content:'{:url("yiqiu/Jiqiren/index")}',
-				type:2
+                area:[width+'px',height+'px'],
+                content:url,
+                type:2,
+				fix:false,
             });
 		}
+
+		$('#phone-tip').hover(function(){
+		    var that = this;
+		    layer.tips('<img src="/static/images/cyliveqr.png" />',that,{tips:1,skin:'layui-layer-molv',time:5000});
+		},function(){
+		    layer.close(layer.index);
+		});
+
+
+		$(function(){
+
+		    //查询在线人数
+            $.post('/index/Index/get_number',{},function(data){
+                data = JSON.parse(data);
+                if(data.type=='success'){
+                    $('#people_number').html('当前在线人数:'+data.number);
+                }else{
+                    $('#people_number').html('获取失败');
+                }
+            });
+
+			//查询最近发言
+			$.post('/index/Index/message',{},function(data){
+			    data = JSON.parse(data);
+			    for(var i=data.length-1;i>=0;i--){
+			        $('.chat').append(data[i]['message']);
+				}
+                scrollBar();
+			});
+		});
 	</script>
+
+
 </body>
 </html>

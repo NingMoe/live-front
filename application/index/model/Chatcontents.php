@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: yuangong
  * Date: 2017/8/18
- * Time: 17:48
+ * Time: 9:59
  */
 
 namespace app\index\model;
@@ -11,16 +11,9 @@ use think\Model;
 
 class Chatcontents extends Model
 {
-    public function add($data){
-        $msg = [
-            'nickname'=>$data['nickname'],
-            'message'=>$data['msg'],
-            'send_time'=>time(),
-            'send_type'=>$data['type'],
-            'head'=>$data['head'],
-            'level'=>$data['level']
-        ];
-        $chat = new Chatcontents($msg);
-        $chat->save();
+    public function get_contents($where=''){
+        return Chatcontents::all(function($query) use($where){
+            $query->where($where)->order('send_time desc')->limit(50);
+        });
     }
 }

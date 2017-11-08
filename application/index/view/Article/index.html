@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<link rel="stylesheet" href="/static/layui/css/layui.css"  media="all">
+<script src="/static/layui/layui.js"></script>
+<script src="/static/js/jquery.js"></script>
+<style>
+    .article a,span{
+        color:#666;
+    }
+    .article ul{
+        width:100%;
+    }
+    .article li{
+        width:100%;
+        height:30px;
+        line-height: 30px;
+        border-bottom:1px dashed #ccc;
+    }
+    .article li span:first-child{
+        width:70%;
+        display: inline-block;
+    }
+    .article li span:nth-child(2){
+        width:20%;
+        display: inline-block;
+    }
+    .article li span:nth-child(3){
+        width:4%;
+        display: inline-block;
+    }
+    .article li span:nth-child(4){
+        width:4%;
+        display: inline-block;
+    }
+    .article li:first-child{
+        width:100%;
+        height:30px;
+        background: #eee;
+    }
+
+</style>
+<body>
+<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+    <ul class="layui-tab-title">
+        {volist name="articletype" id="vo" key="k"}
+        <li {notempty name="vo['this']"}class="layui-this"{/notempty}>{$vo.typename}</li>
+        {/volist}
+    </ul>
+    <div class="layui-tab-content">
+        <div class="layui-tab-item layui-show article">
+            <ul>
+                <li>
+                    <span>标题</span>
+                    <span>发布时间</span>
+                    <span>点击</span>
+                    <span>下载</span>
+                </li>
+                {volist name="article" id="v"}
+                <li>
+                    <span>
+                        <img src="/static/images/point.png" alt="">
+                        <a onclick="clickNumber('{$v.article_id}')" href="/index/Article/details?id={$v.article_id}&typeid={$v.typeid}">{$v.title}</a>
+                    </span>
+                    <span>{$v.create_time}</span>
+                    <span style="color:#5FB878;">{$v.click_number}</span>
+                    <span style="color:#FF5722;">{$v.download_number}</span>
+                </li>
+                {/volist}
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    layui.use('element', function(){
+        var $ = layui.jquery
+            ,element = layui.element
+            ,layer = layui.layer; //Tab的切换功能，切换事件监听等，需要依赖element模块
+
+        element.on('tab(docDemoTabBrief)', function(data){
+            var type = this.textContent;
+            location.href='/index/article/index?typename='+type;
+        });
+
+
+    });
+
+    function clickNumber(id){
+        //增加点击数
+        $.post('{:url("index/Article/clickNumber")}',{id:id},function(data){
+            console.log(data);
+        });
+    }
+</script>
+</html>

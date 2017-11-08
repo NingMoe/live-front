@@ -187,9 +187,9 @@ return [
 
     'cache'                  => [
         // 驱动方式
-        'type'   => 'File',
+        'type'   => 'Redis',
         // 缓存保存目录
-        'path'   => CACHE_PATH,
+        //'path'   => APP_PATH.'runtime/hejing/',
         // 缓存前缀
         'prefix' => '',
         // 缓存有效期 0表示永久缓存
@@ -210,6 +210,7 @@ return [
         'type'           => '',
         // 是否自动开启 SESSION
         'auto_start'     => true,
+        'expire'=>5000
     ],
 
     // +----------------------------------------------------------------------

@@ -11,7 +11,7 @@ namespace app\index\controller;
 
 use think\Controller;
 use think\Cache;
-class Sms extends Controller
+class Sms extends Common
 {
     const SMS_TIME = 60;//发送间隔时间
     const SMS_NUMBER = 5;//缓存有效期内发送短信的最大数

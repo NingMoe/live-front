@@ -10,18 +10,19 @@ namespace app\index\controller;
 use app\index\model;
 use think\Controller;
 
-class User extends Controller
+class User extends Common
 {
     public function login(){
         if($_POST){
 
             $data = input('post.');
             $user = model('user');
-            $userGet = $user->login($data);
-            if($userGet){
+            $result = $user->login($data);
+            if($result){
                 $arr['status'] = 'success';
                 $arr['msg'] = '登录成功';
-                $arr['user'] = userArray($userGet['nickname'],$userGet['level'],$userGet['head'],$userGet['profile']['name']);
+                //$index = controller('Index','Controller');
+                $arr['user'] = session('user');
             }else{
                 $arr['status'] = 'error';
                 $arr['msg'] = '用户名或密码不正确';
@@ -39,10 +40,10 @@ class User extends Controller
             if($this->check_sms($data['code'])){
                 $user = model('user');
                 $result = $user->add($data);
-                if(is_array($result)){
+                if(is_bool($result)){
                     $arr['status'] = 'success';
                     $arr['msg'] = '注册成功';
-                    $arr['user'] = $result;
+                    $arr['user'] = session('user');
                 }else{
                     $arr['status'] = 'error';
                     $arr['msg'] = $result;
