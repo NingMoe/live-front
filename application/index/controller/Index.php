@@ -106,7 +106,7 @@ class Index extends Common
             $data['number'] = Caches::init()->handler()->HLEN(Caches::USER_LIST);
         }else{
             $data['type'] = 'error';
-            $data['msg']  = '你没有权限获取';
+            $data['msg']  = '你没有权限获取.';
         }
         return json_encode($data);
     }
