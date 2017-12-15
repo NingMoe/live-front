@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:71:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\index.html";i:1513234674;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:71:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\index.html";i:1513327372;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -388,6 +388,8 @@ background: url('/static/images/bg.jpg')
     //获取用户信息
 	var user = '<?php echo $userinfo; ?>';
 	localStorage.setItem('user',user);
+	user = user.replace(/\\/g,'/');
+	console.log(user);
 	setUserInfo(JSON.parse(user));
 
     /*window.onbeforeunload = function(){

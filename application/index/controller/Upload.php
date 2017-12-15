@@ -22,11 +22,13 @@ class Upload extends Common
                //$info = $file->move(ROOT_PATH . 'public/uploads/images');
                $info = $file->validate(['size'=>self::IMAGE_SIZE,'ext'=>'jpg,png,gif'])->move(self::IMAGE_URL);
                if($info){
-                    //返回文件目录(相对路径)
+                    //返回文件目录(相对路径) 替换一下\斜杠
+                   $src = 'http://'.$_SERVER['SERVER_NAME'].self::IMAGES_URL_X.$info->getSaveName();
+                   $src = str_replace('\\','/',$src);
                     $img_info = array(
                         'code'=>200,
                         'msg'=>'上传成功',
-                        'src'=>'http://'.$_SERVER['SERVER_NAME'].self::IMAGES_URL_X.$info->getSaveName()
+                        'src'=>$src
                     );
                     return json_encode($img_info);
                }else{
