@@ -23,7 +23,6 @@ class Worker extends Controller
 
             $clientId = input('post.clientId');
             //如果session里没有cid 表示用户是第一次进入直播室
-            dump(session('user.clientId'));
             if(empty(session('user.clientId'))){
                 //广播用户该用户上线
                 $data = session('user');
