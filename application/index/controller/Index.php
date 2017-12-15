@@ -46,7 +46,6 @@ class Index extends Common
         //查询房间基本信息
         $roominfo = model('Roominfo')->getroom();
 
-
         return view('index',[
             'user'=>$user,
             'userinfo'=>json_encode($user),

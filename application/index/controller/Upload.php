@@ -10,8 +10,8 @@ class Upload extends Common
     //文件大小(字节) 默认5m
      const IMAGE_SIZE = 5000000;
      const RESTS_SIZE = 5000000;
-     const IMAGE_URL  = ROOT_PATH . 'public' . DS . 'uploads'. DS .'images';//绝对路径
-     const IMAGES_URL_X = DS . 'uploads'. DS .'images'.DS;//相对路径
+     const IMAGE_URL  = ROOT_PATH . 'public/uploads/images';//绝对路径
+     const IMAGES_URL_X = '/uploads/images/';//相对路径
 
      //上传图片
        public function image(){
