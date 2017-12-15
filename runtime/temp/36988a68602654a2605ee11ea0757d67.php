@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:71:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\index.html";i:1510125085;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:71:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\index.html";i:1513234674;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,7 +55,7 @@ background: url('/static/images/bg.jpg')
 				<li class="layui-nav-item layui-this"><a href="javascript:popups(700,600,'/<?php echo $val['link']; ?>')"><?php echo $val['menu_name']; ?></a></li>
 				<?php endforeach; endif; ?>
             </ul>
-			<?php if($user['profile']['level'] >= 11): ?>
+			<?php if($user['profile']['level'] >= 10): ?>
 			<span id="people_number" style="position:absolute;left:100px;background: #333;color:white;">正在统计人数..</span>
 			<?php endif; ?>
 		</div>
@@ -92,8 +92,8 @@ background: url('/static/images/bg.jpg')
 						<div class="buju">
 							<p class="bujuTitle">观看模式</p>
 							<div class="bujuContent">
-								<a class="caidan caidan1 select" dataNumber="0"></a>
-								<a class="caidan caidan2" dataNumber="1"></a>
+								<a  class="caidan caidan1 select" dataNumber="0"></a>
+								<a  class="caidan caidan2" dataNumber="1"></a>
 							</div>
 						</div>
 						<p class="domTitle">背景图</p>
@@ -165,14 +165,14 @@ background: url('/static/images/bg.jpg')
 						<input class="searchText" type="text" />
 						<a class="searchBtn" href=""></a>
 					</li>
-					<?php foreach($userlist as $vo): ?>
-						<li class="userInfo" username="游客-30924553" id="<?php echo $vo['clientId']; ?>">
-							<img src="<?php echo $vo['head']; ?>" class="avatar" />
-							<span class="nickname"><?php echo $vo['nickname']; ?></span>
-							<span class="time"><?php echo date('Y-m-d H:i:s',$vo['login_time']); ?></span>
-							<img src="<?php echo $vo['profile']['img']; ?>" class="groupion" />
+
+						<li class="userInfo" username="游客-30924553" id="">
+							<img src="" class="avatar" />
+							<span class="nickname"></span>
+							<span class="time"></span>
+							<img src="" class="groupion" />
 						</li>
-					<?php endforeach; ?>
+
 				</ul>
 			</div>
 			<div style="display:none;" class="userListWrap">
@@ -274,7 +274,7 @@ background: url('/static/images/bg.jpg')
 					<div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
 						<?php foreach($banner as $val): ?>
 						<div class="swiper-slide" style="width: 1080px; margin-right: 30px;">
-							<img src="<?php echo $val['img']; ?>" alt="">
+							<img style="width:100%;height:100%;" src="<?php echo $val['img']; ?>" alt="">
 						</div>
 						<?php endforeach; ?>
 					</div>
@@ -303,9 +303,6 @@ background: url('/static/images/bg.jpg')
 				<a class="jiathis_button_tsina"></a>
 				<a class="jiathis_button_tqq"></a>
 				<a class="jiathis_button_weixin"></a>
-				<a class="jiathis_button_renren"></a>
-				<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-				<a class="jiathis_counter_style"></a>
 			</div>
 			<script type="text/javascript" src="http://v3.jiathis.com/code_mini/jia.js" charset="utf-8"></script>
 			<!-- JiaThis Button END -->
@@ -397,20 +394,7 @@ background: url('/static/images/bg.jpg')
         return '确定离开此页面吗';
     }*/
 
-        //执行实例
-		var upload = layui.upload;
-        upload.render({
-            elem: '#upload' //绑定元素
-            ,url: '<?php echo url("Upload/image"); ?>' //上传接口
-            ,done: function(res){
-                //上传完毕回调
-                var img = '<img class="sendImages" onclick="artwork(`.messageContent`)" src="'+res.src+'"><br />';
-				$('#editor').append(img);
-			}
-            ,error: function(){
-                //请求异常回调
-            }
-        });
+
 	</script>
 
 
@@ -449,14 +433,48 @@ background: url('/static/images/bg.jpg')
 			//查询最近发言
 			$.post('/index/Index/message',{},function(data){
 			    data = JSON.parse(data);
+			    var date;
+			    var hour;
+			    var minute;
+                //var user = JSON.parse(localStorage.getItem('user'));
 			    for(var i=data.length-1;i>=0;i--){
+			        var id = $(data[i]['message']).attr('id');
 			        $('.chat').append(data[i]['message']);
+			        if(data[i]['is_check']==1){
+			            //if(user.group['check_msg']==0){
+                            $('#'+id).append('<i class="case1" onclick="checkMessage(this)">审核通过</i><i class="case2" onclick="deleteMessage(this)">删除</i></div>');
+						//}
+					}
+					//修改时间
+					date = new Date(parseInt(data[i].send_time)*1000);
+			        hour = date.getHours();
+			        minute = date.getMinutes();
+			        $('#'+id).find('.messageInfo').find('span').eq(2).html(hour+':'+minute);
 				}
                 scrollBar();
 			});
+
+
+            layui.use(['layim','upload'], function(){
+                //执行实例
+                var upload = layui.upload;
+                upload.render({
+                    elem: '#upload' //绑定元素
+                    ,url: '<?php echo url("Upload/image"); ?>' //上传接口
+                    ,done: function(res){
+                        //上传完毕回调
+                        var img = '<img class="sendImages" onclick="artwork(`.messageContent`)" src="'+res.src+'"><br />';
+                        $('#editor').append(img);
+                    }
+                    ,error: function(){
+                        //请求异常回调
+                    }
+                });
+
+
+            });
 		});
 	</script>
-
 
 </body>
 </html>

@@ -36,8 +36,8 @@ class Depot extends Model
         $depot = Depot::alias('d')
             ->Field('d.id as did,type,cangwei,kaicang,zhisun,pingcang,end_time,zhiying,maidan,uid,d.create_time,nickname,goods_name')
             ->where($where)
-            ->join('yq_user u','d.uid=u.uname')
-            ->join('yq_goods g','d.goods_id=g.goods_id')
+            ->join('tp_user u','d.uid=u.uname')
+            ->join('tp_goods g','d.goods_id=g.goods_id')
             ->order($ord)
             ->limit($limit)
             ->select();

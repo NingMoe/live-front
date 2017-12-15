@@ -12,7 +12,7 @@ use think\Model;
 class Group extends Model
 {
     public function getGroup($id){
-        return Group::get(['group_id'=>$id])->toArray();
+        return Group::get(['id'=>$id])->toArray();
     }
 
 }

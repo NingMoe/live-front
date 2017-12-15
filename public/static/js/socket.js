@@ -7,7 +7,7 @@ ws.onopen = function(msg){
 };
 
 //处理消息
-ws.onmessage = function(e){console.log(e);
+ws.onmessage = function(e){
    var data = JSON.parse(e.data);
    switch(data.type){
        case 'clientId':
@@ -20,8 +20,13 @@ ws.onmessage = function(e){console.log(e);
                localStorage.setItem('user',JSON.stringify(user));
            });
            break;
-       case 'msg':
-
+       case 'msg':console.log(data);
+            if(data.is_check){
+                data.msg += '<i class="case1" onclick="checkMessage(this)">审核通过</i><i class="case2" onclick="deleteMessage(this)">删除</i></div>';
+            }else{
+                var mid = data.mid;
+                $('#'+mid).find('i').remove();
+            }
            var user = JSON.parse(localStorage.getItem('user'));
            if(data.cid == user.clientId){
                data.msg = matchAite(data.msg);//匹配@+姓名 如果匹配成功 姓名替换成您
@@ -30,7 +35,7 @@ ws.onmessage = function(e){console.log(e);
            }
 
            //判断推送的消息是否存在 如果存在则不添加
-           if($('#'+data.mid).length>0){
+           /*if($('#'+data.mid).length>0){
                if($('#'+data.mid).find('.case1').length>0){//如果审核按钮存在,删除审核按钮
                    $('#'+data.mid).find('.case1').remove();
                }
@@ -45,7 +50,9 @@ ws.onmessage = function(e){console.log(e);
                    }
                }
                scrollBar();
-           }
+           }*/
+           $('.chat').append(data.msg);
+           scrollBar();
            break;
        case 'ping':
            //响应心跳,避免断开连接
@@ -57,8 +64,13 @@ ws.onmessage = function(e){console.log(e);
                $('#'+data.mid).remove();
            }
            break;
+
        case 'online':
-           //alert(data.nickname+'上线啦');
+           var _html = '<div class="chatInfo" style="text-align: center;">';
+           _html += '<span class="user-online">系统消息:'+data.nickname+'&nbsp;上线了~</span>';
+           _html += '</div>';
+           $('.chat').append(_html);
+           scrollBar();
            break;
        case 'close':
            //前端将对应的clientId删除

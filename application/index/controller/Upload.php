@@ -26,7 +26,7 @@ class Upload extends Common
                     $img_info = array(
                         'code'=>200,
                         'msg'=>'上传成功',
-                        'src'=>self::IMAGES_URL_X.$info->getSaveName()
+                        'src'=>'http://'.$_SERVER['SERVER_NAME'].self::IMAGES_URL_X.$info->getSaveName()
                     );
                     return json_encode($img_info);
                }else{
@@ -35,4 +35,5 @@ class Upload extends Common
                }
            }
        }
+
 }

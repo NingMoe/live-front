@@ -30,7 +30,7 @@ class Chatcontents extends Model
 
     public function updateMsg($mid){
         $chat = new Chatcontents();
-        $result = $chat->save(array('is_check'=>0),['mid'=>$mid]);
+        $result = $chat->save(array('is_check'=>0,'send_time'=>time()),['mid'=>$mid]);
         return $result;
     }
 

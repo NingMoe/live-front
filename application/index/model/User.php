@@ -47,7 +47,7 @@ class User extends Model
             $arr = [
                 'uname'=>$data['uname'],
                 'upwd'=>Hash::make((string)$data['upwd']),
-                'head'=>'/static/images/youke'.rand(0,5).'.png',
+                'head'=>'http://'.$_SERVER['SERVER_NAME'].'/static/images/youke'.rand(0,5).'.png',
                 'nickname'=>$data['nickname'],
                 'login_time'=>time(),
                 'create_time'=>time(),
@@ -97,6 +97,7 @@ class User extends Model
         $user = User::get(['uname'=>$data['uname']],'profile')->toArray();
         $group = model('Group')->getGroup($user['profile']['group_id']);
         $user['group'] = $group;
+        $user['clientId'] = empty($data['clientId'])?'':$data['clientId'];
         if(!empty($user)){
             setSession($user);
             return 1;

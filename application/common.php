@@ -77,14 +77,14 @@ if(!function_exists('setSession')){
      */
     function setSession($arr=null){
        if(empty($arr['profile'])){
-           $id = rand(1000000,9999999);
+           $id = time();
            session('user',array(
                'nickname'=>'游客'.$id,
                'level'=>1,
                'time'=>time(),
                'head'=>'/static/images/youke'.rand(0,5).'.png',
                'login_time'=>time(),
-               'uname'=>time(),
+               'uname'=>$id,
                'profile'=>$arr,
                'login_ip'=>get_client_ip(0,true)
            ));

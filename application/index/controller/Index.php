@@ -1,6 +1,6 @@
 <?php
 namespace app\index\controller;
-use think\cache\driver\Redis;
+use GatewayClient\Gateway;
 use think\Controller;
 use app\index\Model\Jiqiren;
 use think\Session;
@@ -9,7 +9,6 @@ class Index extends Common
 {
     public function index()
     {
-
         //初始化session
         $user = $this->getUserInfo();
         unset($user['group']['check_setup']);//删除设置权限字段 否则前端报错
@@ -22,11 +21,6 @@ class Index extends Common
             $role = $jiqiren->getRole(session('user.uname'));
         }
 
-        //从缓存取出在线用户列表
-        $userList = Caches::init()->handler()->HVALS(Caches::USER_LIST);
-        foreach($userList as $key=>$vo){
-            $userList[$key] = json_decode($vo,true);
-        }
 
         //查询banner图
         $banner = model('Banner');
@@ -50,14 +44,13 @@ class Index extends Common
         }
 
         //查询房间基本信息
-        $roominfo = model('Roominfo')->getroom()->toArray();
+        $roominfo = model('Roominfo')->getroom();
 
 
         return view('index',[
             'user'=>$user,
             'userinfo'=>json_encode($user),
             'role'=>$role,
-            'userlist'=>$userList,
             'banner'=>$banner,
             'set'=>$set,
             'roominfo'=>$roominfo
@@ -101,9 +94,9 @@ class Index extends Common
     //获取在线人数
     public function get_number(){
 
-        if(session('user.profile')['level']>=11){
+        if(session('user.profile')['level']>=10){
             $data['type'] = 'success';
-            $data['number'] = Caches::init()->handler()->HLEN(Caches::USER_LIST);
+            $data['number'] = Gateway::getAllClientCount();
         }else{
             $data['type'] = 'error';
             $data['msg']  = '你没有权限获取.';
@@ -113,7 +106,11 @@ class Index extends Common
 
     //查询最近的50条发言
     public function message(){
-        $where = empty(session('user.group')['check_msg'])?'':['is_check'=>0];
+        $where = '';
+        if(empty(session('user.group')) || session('user.group')['check_msg']==1){
+            $where = ['is_check'=>0];
+        }
+
         $data = model('Chatcontents')->get_contents($where);
         $data = collection($data)->toArray();
         return json_encode($data);

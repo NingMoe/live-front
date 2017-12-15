@@ -38,7 +38,7 @@ class Article extends Common
         //判断用户权限
         $typeid = input('get.typeid');
         $id = input('get.id');
-        $group_id = session('user.group')['group_id'];
+        $group_id = session('user.group')['id'];
         $type = model('Articletype')->gettype($typeid)->toArray();
         if(!empty($type['group_id']) && in_array($group_id,json_decode($type['group_id'],true))){
             //查询指定文章

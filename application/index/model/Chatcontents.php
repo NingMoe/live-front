@@ -16,4 +16,5 @@ class Chatcontents extends Model
             $query->where($where)->order('send_time desc')->limit(50);
         });
     }
+
 }

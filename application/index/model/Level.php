@@ -40,6 +40,6 @@ class Level extends Model
     //关联查找
     public function profile()
     {
-        return $this->hasOne('Group','group_id','group_id');
+        return $this->hasOne('Group','id','group_id');
     }
 }

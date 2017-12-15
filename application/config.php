@@ -189,7 +189,7 @@ return [
         // 驱动方式
         'type'   => 'Redis',
         // 缓存保存目录
-        //'path'   => APP_PATH.'runtime/hejing/',
+        //'path'   => APP_PATH.'runtime/redis/',
         // 缓存前缀
         'prefix' => '',
         // 缓存有效期 0表示永久缓存

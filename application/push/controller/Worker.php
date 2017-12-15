@@ -12,7 +12,6 @@ use think\Controller;
 use GatewayClient\Gateway;
 use app\index\Model\Level;
 use app\push\controller\Message;
-use app\push\controller\Caches;
 class Worker extends Controller
 {
 
@@ -21,9 +20,18 @@ class Worker extends Controller
      */
     public function bindUid(){
         if(request()->isPost()){
-           $clientId = input('post.clientId');
-           session('user.clientId',$clientId);
 
+            $clientId = input('post.clientId');
+            //如果session里没有cid 表示用户是第一次进入直播室
+            dump(session('user.clientId'));
+            if(empty(session('user.clientId'))){
+                //广播用户该用户上线
+                $data = session('user');
+                $data['type'] = 'online';
+                Gateway::sendToAll(json_encode($data),'',$clientId);
+            }
+
+           session('user.clientId',$clientId);
            //查询当前等级的用户组
            $level = new Level();
            $group = $level->getGroup(session('user.level'));
@@ -32,16 +40,11 @@ class Worker extends Controller
            }
            //绑定用户组
            Gateway::joinGroup($clientId,$group['name']);
-           //广播上线
-            $data = session('user');
-            $data['type'] = 'online';
-           Gateway::sendToAll(json_encode($data),'',$clientId);
-           //保存到在线用户列表
-            $this->addUserFromList(session('user'));
-           //将用户组保存到session
+
+            //将用户组保存到session
             session('user.group',$group);
             return $group;//返回group信息,让前端填充到localStorage
-           //echo Gateway::getClientCountByGroup($group['name']);
+
         }
     }
 
@@ -54,15 +57,15 @@ class Worker extends Controller
             $data['msg']  = input('post.msg');
             $data['mid']  = input('post.mid');
             $data['cid']  = input('post.cid');
-            $data['is_check'] = session('user.group')['check_msg'];
+            $data['is_check'] = session('user.group')['check_msg'];dump(session('user'));
             $data['time'] = time();
             //判断该条发言是否需要审核
             //如果需要审核,则拼装审核的按钮,否则拼装</div>结束
             if($data['is_check']){
-                $data['msg'].='<i class="case1" onclick="checkMessage(this)">审核通过</i><i class="case2" onclick="deleteMessage(this)">删除</i></div>';
+                //$data['msg'].='<i class="case1" onclick="checkMessage(this)">审核通过</i><i class="case2" onclick="deleteMessage(this)">删除</i></div>';
                 Gateway::sendToGroup('管理',json_encode($data),session('user.clientId'));
             }else{
-                $data['msg'].='</div>';
+                //$data['msg'].='</div>';
                 Gateway::sendToAll(json_encode($data),'',session('user.clientId'));
             }
 
@@ -82,7 +85,7 @@ class Worker extends Controller
             $data = input('post.');
             if($data['flag']=='pass'){
                 $data['type'] = 'msg';
-                Gateway::sendToAll(json_encode($data),'',session('user.clientId'));
+                Gateway::sendToAll(json_encode($data),'',[0=>session('user.clientId'),1=>$data['cid']]);
                 //更新发言的审核状态
                 if(Message::saveMsgStatus($data['mid'])){
                     return '{"type":"success","msg":"审核通过.."}';
@@ -135,17 +138,12 @@ class Worker extends Controller
         Gateway::sendToAll(json_encode($data));
     }
 
-    //保存在线用户列表
-    public function addUserFromList($user){
-        Caches::setUserList($user);
-        //dump(Caches::setUserList($user));
-    }
-
-    //用户从列表中剔除
-    public function delUserFromList(){
+    /**
+     * 测试接口
+     * */
+    public function test(){
         if(request()->isPost()){
-            $key = input('post.clientId');
-            Caches::delUserToList($key);
+
         }
     }
 

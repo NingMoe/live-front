@@ -3,6 +3,9 @@
 
 
 /*公共样式*/
+body{
+	overflow: hidden;
+}
 .fl{
 	float:left;
 }
@@ -676,3 +679,20 @@ a{cursor:pointer;}
 	margin-left:10px;
 	font-weight: bold;
 }
+.user-online{
+	color:white;
+}
+
+/*角色等级*/
+.level-2{background: url('../images/level/level2.gif') no-repeat}
+.level-3{background: url('../images/level/level3.gif') no-repeat}
+.level-4{background: url('../images/level/level4.gif') no-repeat}
+.level-5{background: url('../images/level/level5.gif') no-repeat}
+.level-6{background: url('../images/level/level6.gif') no-repeat}
+.level-7{background: url('../images/level/level7.gif') no-repeat}
+.level-8{background: url('../images/level/level8.gif') no-repeat}
+.level-9{background: url('../images/level/level9.gif') no-repeat}
+.level-10{background: url('../images/level/level10.png') no-repeat}
+.level-11{background: url('../images/level/level11.png') no-repeat}
+.level-12{background: url('../images/level/level12.png') no-repeat}
+.level{width:50px;height:18px;display:inline-block;background-position:center;}

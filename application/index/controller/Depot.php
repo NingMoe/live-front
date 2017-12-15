@@ -157,7 +157,7 @@ class Depot extends Setup
     public function jiancangInfo($where=''){
 
         $judge = input('param.');//获取查询表达式
-
+        $judge['page'] = empty($judge['page'])?1:$judge['page'];
         //构造时间查询格式
         $time = [];
         empty($judge['beginDate'])?'':array_push($time,array('egt',strtotime($judge['beginDate'])));

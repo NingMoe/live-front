@@ -33,16 +33,22 @@ function sendMsg(){
 function checkMessage(o){
 
     var mid = $(o).parent('.chatInfo').attr('id');
-    var con = $('#'+mid).html();
+    var cid = $(o).parent('.chatInfo').attr('cid');
 
-    //获取不到当前元素的html 直接拼接
+    //获取html 去除按钮
+    var par =  $('#'+mid).clone();
+    par.find('i').remove();
+    var con = par.html();
+
+
+
+    //获取不到当前元素的html 只能获取子元素的html 直接拼接
     var _html = '<div class="chatInfo" id="'+mid+'">';
     _html += con;
     _html += '</div>';
 
-
     //发送消息
-    $.post('/push/Worker/sendToAllMsg',{msg:_html,mid:mid,flag:'pass'},function(data){
+    $.post('/push/Worker/sendToAllMsg',{cid:cid,msg:_html,mid:mid,flag:'pass'},function(data){
         data = JSON.parse(data);
         if(data.type=='error'){
             layer.msg(data.msg);
@@ -87,7 +93,7 @@ function packageMsg(user,msg,mid){
     contents += '<div class="messageInfo">';
     contents += '<span>'+user.nickname+'</span>';
     contents += '<span class="'+user.profile['class']+'">';
-    contents += user.profile["name"]+'</span>';
+    contents += '</span>';
     contents += '<span>'+getTime()+'</span>';
     contents += '</div>';
     contents += '<div class="messageContent" style="'+user.profile['bg']+'">';

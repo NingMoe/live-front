@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:73:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\article\index.html";i:1509073564;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:73:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\article\index.html";i:1512634490;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,7 +64,7 @@
                 <li>
                     <span>
                         <img src="/static/images/point.png" alt="">
-                        <a onclick="clickNumber('<?php echo $v['article_id']; ?>')" href="/index/Article/details?id=<?php echo $v['article_id']; ?>&typeid=<?php echo $v['typeid']; ?>"><?php echo $v['title']; ?></a>
+                        <a onclick="clickNumber('<?php echo $v['id']; ?>')" href="/index/Article/details?id=<?php echo $v['id']; ?>&typeid=<?php echo $v['typeid']; ?>"><?php echo $v['title']; ?></a>
                     </span>
                     <span><?php echo $v['create_time']; ?></span>
                     <span style="color:#5FB878;"><?php echo $v['click_number']; ?></span>

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:70:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\user\login.html";i:1509609134;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:70:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\user\login.html";i:1512632989;}*/ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -55,7 +55,7 @@
 
                 <p class="fieldset">
                     <label class="image-replace cd-password" for="signup-password">密码</label>
-                    <input class="full-width has-padding has-border" id="signup-password" type="text"  placeholder="输入密码">
+                    <input class="full-width has-padding has-border" id="signup-password" type="password"  placeholder="输入密码">
                 </p>
 
 
