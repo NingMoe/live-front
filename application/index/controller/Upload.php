@@ -19,7 +19,7 @@ class Upload extends Common
            $file = request()->file('file');
            // 移动到框架应用根目录/public/uploads/ 目录下
            if($file){
-               //$info = $file->move(ROOT_PATH . 'public' . DS . 'uploads/images');
+               //$info = $file->move(ROOT_PATH . 'public/uploads/images');
                $info = $file->validate(['size'=>self::IMAGE_SIZE,'ext'=>'jpg,png,gif'])->move(self::IMAGE_URL);
                if($info){
                     //返回文件目录(相对路径)
