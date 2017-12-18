@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:73:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\jiqiren\index.html";i:1503305441;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:73:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\jiqiren\index.html";i:1513581879;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,7 +40,7 @@
             <tr>
                 <td></td>
                 <td><?php echo $vo['name']; ?></td>
-                <td><?php echo $vo['level_name']; ?></td>
+                <td><?php echo $vo['profile']['name']; ?></td>
                 <td>
                     <a href="javascript:del('<?php echo $vo['id']; ?>')" class="layui-btn layui-btn-danger layui-btn-mini users_del" data-id="1"><i class="layui-icon"></i> 删除</a>
                 </td>

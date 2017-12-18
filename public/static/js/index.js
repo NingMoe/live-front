@@ -94,10 +94,10 @@ $('.banned').mousedown(function(){
 $('#jiqi').change(function(){
     var user  = JSON.parse(localStorage.getItem('user'));
 	user['nickname'] = $(this).find('option:selected').attr('name');
-	user['profile']['name'] = $(this).find('option:selected').attr('levelname');
+    user['head'] = $(this).find('option:selected').attr('avatar');
+	user['profile']['class'] = $(this).find('option:selected').attr('levelclass');
     user['level'] = $(this).find('option:selected').attr('level');
 	localStorage.setItem('user',JSON.stringify(user));
-
 });
 $('.pass').live('click',function(){
 	var data = $(this).siblings('.escdata').html();

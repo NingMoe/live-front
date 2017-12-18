@@ -24,7 +24,6 @@ class Jiqiren extends Common
 			$data = [
 			    'name'=>input('post.name'),
                 'level'=>input('post.level'),
-                'level_name'=>input('post.levelname'),
                 'uid'=>session('user.uname')
             ];
 

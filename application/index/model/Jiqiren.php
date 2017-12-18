@@ -31,9 +31,13 @@ class Jiqiren extends Model
     }
 
     public function getRole($uid){
-       $role = Jiqiren::All(['uid'=>$uid]);
+       $role = Jiqiren::All(['uid'=>$uid],'profile');
        $role = collection($role)->toArray();
        return $role;
+    }
+
+    public function profile(){
+        return $this->hasOne('Level','id','level');
     }
 
     function del($id){

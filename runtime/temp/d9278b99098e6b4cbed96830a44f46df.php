@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:78:"C:\PhpStudy\WWW\live-front\public/../application/index\view\jiqiren\index.html";i:1513582369;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +15,7 @@
     <link rel="stylesheet" href="/static/yiqiu/css/user.css" media="all" />
 </head>
 <body class="childrenBody">
-<a href="{:url('Jiqiren/add')}" class="layui-btn layui-btn-normal">添加</a>
+<a href="<?php echo url('Jiqiren/add'); ?>" class="layui-btn layui-btn-normal">添加</a>
 <div class="layui-form news_list">
     <table class="layui-table">
         <colgroup>
@@ -35,16 +36,16 @@
             <th>操作</th>
         </tr>
         <tbody>
-        {volist name="role" id="vo"}
+        <?php if(is_array($role) || $role instanceof \think\Collection || $role instanceof \think\Paginator): $i = 0; $__LIST__ = $role;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
             <tr>
                 <td></td>
-                <td>{$vo.name}</td>
-                <td>{$vo.profile['name']}</td>
+                <td><?php echo $vo['name']; ?></td>
+                <td><?php echo $vo['profile']['name']; ?></td>
                 <td>
-                    <a href="javascript:del('{$vo.id}')" class="layui-btn layui-btn-danger layui-btn-mini users_del" data-id="1"><i class="layui-icon"></i> 删除</a>
+                    <a href="javascript:del('<?php echo $vo['id']; ?>')" class="layui-btn layui-btn-danger layui-btn-mini users_del" data-id="1"><i class="layui-icon"></i> 删除</a>
                 </td>
             </tr>
-        {/volist}
+        <?php endforeach; endif; else: echo "" ;endif; ?>
         </tbody>
         </thead>
         <tbody class="users_content"></tbody>
@@ -56,7 +57,7 @@
 <script>
     function del(id){
         if(confirm('删除后不可恢复')){
-            $.post('{:url("Jiqiren/del")}',{id:id},function(result){
+            $.post('<?php echo url("Jiqiren/del"); ?>',{id:id},function(result){
                 result = JSON.parse(result);
                 if(result.status=='success'){
                     location.reload();

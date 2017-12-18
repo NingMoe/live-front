@@ -23,8 +23,7 @@ function sendMsg(){
     scrollBar();
     //发送消息
     $.post('/push/Worker/sendMsg',{msg:con,mid:mid,cid:CLIENT_ID},function(data){
-        CLIENT_ID='';
-        //console.log(data);
+
     });
 }
 
@@ -92,9 +91,9 @@ function packageMsg(user,msg,mid){
     contents += '<div class="userRight">';
     contents += '<div class="messageInfo">';
     contents += '<span>'+user.nickname+'</span>';
+    contents += '<span>'+getTime()+'</span>';
     contents += '<span class="'+user.profile['class']+'">';
     contents += '</span>';
-    contents += '<span>'+getTime()+'</span>';
     contents += '</div>';
     contents += '<div class="messageContent" style="'+user.profile['bg']+'">';
     contents += '<span style="'+user.profile['style']+'">'+msg+'</span>';
