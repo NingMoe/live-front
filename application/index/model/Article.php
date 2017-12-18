@@ -21,11 +21,11 @@ class Article extends Model
 
     //点击数
     public function addclick($id){
-        return Article::where('id',$id)->setInc('click_number',rand(1,10));
+        return Article::where('id',$id)->setInc('click_number',1);
     }
 
     //下载数
     public function adddownload($id){
-        return Article::where('id',$id)->setInc('download_number',rand(1,10));
+        return Article::where('id',$id)->setInc('download_number',1);
     }
 }
