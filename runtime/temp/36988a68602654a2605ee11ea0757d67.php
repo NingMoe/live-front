@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:71:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\index.html";i:1513581698;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:71:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\index.html";i:1513588371;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -449,7 +449,7 @@ background: url('/static/images/bg.jpg')
 					date = new Date(parseInt(data[i].send_time)*1000);
 			        hour = date.getHours();
 			        minute = date.getMinutes();
-			        minute = minute>10?minute:'0'+minute;
+			        minute = minute>=10?minute:'0'+minute;
 			        $('#'+id).find('.messageInfo').find('span').eq(1).html(hour+':'+minute);
 				}
                 scrollBar();

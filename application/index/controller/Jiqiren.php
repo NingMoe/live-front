@@ -24,7 +24,8 @@ class Jiqiren extends Common
 			$data = [
 			    'name'=>input('post.name'),
                 'level'=>input('post.level'),
-                'uid'=>session('user.uname')
+                'uid'=>session('user.uname'),
+                'avatar'=>empty(input('post.avatar'))?'http://'.$_SERVER['SERVER_NAME'].'/static/images/youke.jpg':input('post.avatar')
             ];
 
 			if(session('user.level')<7){
