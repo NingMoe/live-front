@@ -20,7 +20,7 @@ class Index extends Common
             $jiqiren = new Jiqiren();
             $role = $jiqiren->getRole(session('user.uname'));
         }
-
+       //dump($user); dump($role);exit;
 
         //查询banner图
         $banner = model('Banner');

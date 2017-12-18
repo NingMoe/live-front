@@ -246,9 +246,9 @@ background: url('/static/images/bg.jpg')
 				<a id="upload"></a>
 				{if condition="$user.level>=8"}
 					<select name="jiqi" id="jiqi">
-						<option id="current_robot" value="{$user.level}" levelname="{$user['profile']['name']}" level="{$user.level}" name="{$user.nickname}">{$user.nickname}----{$user.profile['name']}</option>
+						<option id="current_robot" avatar="{$user.head}" levelclass="{$user.profile['class']}" value="{$user.level}"  level="{$user.level}" name="{$user.nickname}">{$user.nickname}----{$user.profile['name']}</option>
 						{volist name="role" id="vo"}
-						<option value="{$vo.level}" level="{$vo.level}" levelname="{$vo.level_name}" name="{$vo.name}">{$vo.name}----{$vo.level_name}</option>
+						<option value="{$vo.level}" avatar="{$vo.avatar}"  levelclass="{$vo.profile['class']}" level="{$vo.level}"  name="{$vo.name}">{$vo.name}----{$vo.profile['name']}</option>
 						{/volist}
 					</select>
 				{/if}
@@ -450,7 +450,8 @@ background: url('/static/images/bg.jpg')
 					date = new Date(parseInt(data[i].send_time)*1000);
 			        hour = date.getHours();
 			        minute = date.getMinutes();
-			        $('#'+id).find('.messageInfo').find('span').eq(2).html(hour+':'+minute);
+			        minute = minute>10?minute:'0'+minute;
+			        $('#'+id).find('.messageInfo').find('span').eq(1).html(hour+':'+minute);
 				}
                 scrollBar();
 			});

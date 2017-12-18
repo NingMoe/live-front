@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:71:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\index.html";i:1513327372;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:71:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\index.html";i:1513581698;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -245,9 +245,9 @@ background: url('/static/images/bg.jpg')
 				<a id="upload"></a>
 				<?php if($user['level']>=8): ?>
 					<select name="jiqi" id="jiqi">
-						<option id="current_robot" value="<?php echo $user['level']; ?>" levelname="<?php echo $user['profile']['name']; ?>" level="<?php echo $user['level']; ?>" name="<?php echo $user['nickname']; ?>"><?php echo $user['nickname']; ?>----<?php echo $user['profile']['name']; ?></option>
+						<option id="current_robot" avatar="<?php echo $user['head']; ?>" levelclass="<?php echo $user['profile']['class']; ?>" value="<?php echo $user['level']; ?>"  level="<?php echo $user['level']; ?>" name="<?php echo $user['nickname']; ?>"><?php echo $user['nickname']; ?>----<?php echo $user['profile']['name']; ?></option>
 						<?php if(is_array($role) || $role instanceof \think\Collection || $role instanceof \think\Paginator): $i = 0; $__LIST__ = $role;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-						<option value="<?php echo $vo['level']; ?>" level="<?php echo $vo['level']; ?>" levelname="<?php echo $vo['level_name']; ?>" name="<?php echo $vo['name']; ?>"><?php echo $vo['name']; ?>----<?php echo $vo['level_name']; ?></option>
+						<option value="<?php echo $vo['level']; ?>" avatar="<?php echo $vo['avatar']; ?>"  levelclass="<?php echo $vo['profile']['class']; ?>" level="<?php echo $vo['level']; ?>"  name="<?php echo $vo['name']; ?>"><?php echo $vo['name']; ?>----<?php echo $vo['profile']['name']; ?></option>
 						<?php endforeach; endif; else: echo "" ;endif; ?>
 					</select>
 				<?php endif; ?>
@@ -388,8 +388,6 @@ background: url('/static/images/bg.jpg')
     //获取用户信息
 	var user = '<?php echo $userinfo; ?>';
 	localStorage.setItem('user',user);
-	user = user.replace(/\\/g,'/');
-	console.log(user);
 	setUserInfo(JSON.parse(user));
 
     /*window.onbeforeunload = function(){
@@ -451,7 +449,8 @@ background: url('/static/images/bg.jpg')
 					date = new Date(parseInt(data[i].send_time)*1000);
 			        hour = date.getHours();
 			        minute = date.getMinutes();
-			        $('#'+id).find('.messageInfo').find('span').eq(2).html(hour+':'+minute);
+			        minute = minute>10?minute:'0'+minute;
+			        $('#'+id).find('.messageInfo').find('span').eq(1).html(hour+':'+minute);
 				}
                 scrollBar();
 			});
