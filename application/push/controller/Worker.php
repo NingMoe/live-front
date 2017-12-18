@@ -42,6 +42,8 @@ class Worker extends Controller
 
             //将用户组保存到session
             session('user.group',$group);
+            //存储用户信息到Gateway
+            Gateway::setSession($clientId,session('user'));
             return $group;//返回group信息,让前端填充到localStorage
 
         }

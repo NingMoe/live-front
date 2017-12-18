@@ -86,7 +86,10 @@ $('.aite').mousedown(function(){
 $('.banned').mousedown(function(){
 
 	$.post('/index/Front/rid_of',{clientId:CLIENT_ID},function(data){
-		layer.msg(data);
+		data = JSON.parse(data);
+		if(data.type==-1){
+			layer.msg(data.msg);
+		}
 	});
 });
 
