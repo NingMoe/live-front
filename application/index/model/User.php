@@ -47,7 +47,7 @@ class User extends Model
             $arr = [
                 'uname'=>$data['uname'],
                 'upwd'=>Hash::make((string)$data['upwd']),
-                'head'=>'http://'.$_SERVER['SERVER_NAME'].'/static/images/youke'.rand(0,5).'.png',
+                'head'=>'http://'.$_SERVER['SERVER_NAME'].'/static/images/youke.jpg',
                 'nickname'=>$data['nickname'],
                 'login_time'=>time(),
                 'create_time'=>time(),
