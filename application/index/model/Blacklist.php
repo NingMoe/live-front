@@ -11,14 +11,14 @@ use think\Model;
 
 class Blacklist extends Model
 {
-   public function add($ip,$time=''){
-       if(!empty(Blacklist::get(['ip'=>$ip]))){
+   public function add($data){
+       if(!empty(Blacklist::get(['ip'=>$data['ip']]))){
            return '该ip已在黑名单内';
        }
-       if($time==''){
-           $time = time()+60*60*24*360;
+       if(empty($data['over_time'])){
+           $data['over_time'] = time()+60*60*24*360;
        }
-       if(Blacklist::save(['ip'=>$ip,'over_time'=>$time])){
+       if(Blacklist::save($data)){
            return '添加黑名单成功';
        }
 

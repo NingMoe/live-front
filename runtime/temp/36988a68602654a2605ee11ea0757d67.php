@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:71:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\index.html";i:1513588371;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:71:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\index.html";i:1513588982;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -325,6 +325,8 @@ background: url('/static/images/bg.jpg')
 	<script type="text/javascript" src="/static/js/swiper-3.4.2.jquery.min.js"></script>
 	<script type="text/javascript" src="/static/js/socket.js"></script>
 	<script type="text/javascript" src="/static/js/msg.js"></script>
+	<script src="http://chat.51cyxj.com/static/layui/layui.js"></script>
+	<script src="http://chat.51cyxj.com/static/js/kefu.js"></script>
 	<script>
 
         var swiper = new Swiper('.swiper-container', {
