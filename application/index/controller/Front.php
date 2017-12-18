@@ -20,9 +20,10 @@ class Front extends Common
                 echo '{"type":"-1","msg":"踢出失败,无法获取此用户ip地址"}';
                 return;
             }
-            $ip = $user['login_ip'];
+            $data['ip'] = $user['login_ip'];
+            $data['name'] = $user['nickname'];
             $black = Model('Blacklist');
-            $msg = $black->add($ip);
+            $msg = $black->add($data);
             $worker = new Worker();
             $worker->bannedUser($cid);
             return $msg;

@@ -39,6 +39,8 @@ class Worker extends Controller
            }
            //绑定用户组
            Gateway::joinGroup($clientId,$group['name']);
+           //绑定人数组 多个网站用一个Gateway 区分人数
+            Gateway::joinGroup($clientId,'7000');
 
             //将用户组保存到session
             session('user.group',$group);

@@ -92,10 +92,10 @@ class Index extends Common
 
     //获取在线人数
     public function get_number(){
-
+        sleep(2);
         if(session('user.profile')['level']>=10){
             $data['type'] = 'success';
-            $data['number'] = Gateway::getAllClientCount();
+            $data['number'] = Gateway::getClientCountByGroup('7000');
         }else{
             $data['type'] = 'error';
             $data['msg']  = '你没有权限获取.';
