@@ -24,7 +24,7 @@ function scheme(){
     }
 
     //计算聊天窗口高度
-    var ms = main-112;
+    var ms = main-130;
     $('.message').height(ms);
 
     //计算视频块高度
