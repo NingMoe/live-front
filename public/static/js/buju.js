@@ -6,7 +6,7 @@ function scheme(){
     var winHeight= $(window).height();//可见区域高度
     var head = 50;//头部高度
     var foot = 32;//底部高度
-    var MENU = false;//是否显示菜单栏
+    var MENU = true;//是否显示菜单栏
     var USERLIST = false;//是否显示用户列表
     var main = winHeight-head-foot-16;//去除上下margin的主体区域高度
     var menuHeight = 70;//菜单栏宽度
