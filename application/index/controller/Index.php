@@ -114,4 +114,9 @@ class Index extends Common
         $data = collection($data)->toArray();
         return json_encode($data);
     }
+
+    public function mobile(){
+        return view();
+    }
 }
+

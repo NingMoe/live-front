@@ -1,0 +1,13 @@
+body{
+	margin:0;
+	padding:0;
+}
+.main{
+	background: red;
+}
+.notice{
+	background: blue;
+}
+.chat{
+	background: gray;
+}
