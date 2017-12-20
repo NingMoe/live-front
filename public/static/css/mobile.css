@@ -40,14 +40,19 @@ body{
 .chat{
 
 }
-.chat>div{
+.chat-head{
+	width: 100%;
+	height:100px;
+	background: #EAEAEA;
+}
+.chat-head>div{
 	width: 33.3333%;
 	height:100px;
 	float: left;
 	text-align: center;
 	line-height: 100px;
 }
-.chat>div>.item{
+.chat-head>div>.item{
 	font-size:2rem;
 	position: relative;
 }
