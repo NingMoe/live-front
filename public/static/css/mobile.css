@@ -5,8 +5,14 @@ body{
 .main{
 
 }
-.notice{
-	background: blue;
+.head{
+	position: relative;
+}
+.head .logo{
+	width: 2rem;
+	height: 1.2rem;
+	position: absolute;
+	left: .5rem;
 }
 .chat{
 
@@ -16,4 +22,24 @@ body{
 	height:100px;
 	float: left;
 	text-align: center;
+	line-height: 100px;
+}
+.chat>div>.item{
+	font-size:2rem;
+	font-family: "Angsana New";
+	position: relative;
+}
+.cur{
+	color:#1E9FFF;
+}
+.bt:after{
+	display: inline-block;
+	position: absolute;
+	content: " ";
+	width: 2rem;
+	height: .4rem;
+	background-color: #1E9FFF;
+	bottom: 0;
+	left: 50%;
+	margin-left:-1rem;
 }
