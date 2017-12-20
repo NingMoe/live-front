@@ -3,11 +3,17 @@ body{
 	padding:0;
 }
 .main{
-	background: red;
+
 }
 .notice{
 	background: blue;
 }
 .chat{
-	background: gray;
+
+}
+.chat>div{
+	width: 33.3333%;
+	height:100px;
+	float: left;
+	text-align: center;
 }
