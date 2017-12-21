@@ -116,7 +116,10 @@ class Index extends Common
     }
 
     public function mobile(){
-        return view();
+
+        return view('mobile',[
+            'user'=>session('user')
+        ]);
     }
 }
 

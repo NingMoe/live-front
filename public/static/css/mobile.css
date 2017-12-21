@@ -24,7 +24,7 @@ body{
 	height:4rem;
 	line-height: 4rem;
 	width:10rem;
-	right: 3.5rem;
+	right: 1rem;
 	top: 50%;
 	-webkit-transform: translateY(-50%);
 	-ms-transform: translateY(-50%);
@@ -68,3 +68,107 @@ body{
 	left: 50%;
 	margin-left:-1rem;
 }
+
+/*登录页面开始*/
+.login-title{
+	height: 1.333333rem;
+	line-height: 1.333333rem;
+	position: relative;
+	background: #2a9efa;
+	color: #fff;
+	font-size: .533333rem;
+	text-align: center;
+	padding-left: .4rem;
+}
+.login-return{
+	position: absolute;
+	width: .36rem;
+	height: .586667rem;
+	left: .333333rem;
+	top: .35rem;
+	background: url(../images/return.png) no-repeat;
+	background-size: contain;
+}
+.login-reg{
+	color: #fff;
+	font-size: .426667rem;
+	position: absolute;
+	right: .266667rem;
+	top: 0;
+}
+
+.login-content{
+	padding: .266667rem .4rem 0;
+}
+.login-from li{
+	height: 1.17rem;
+	margin-bottom: .266667rem;
+	border-bottom: 1px solid #dbdbdb;
+}
+.login-from li input{
+	float: left;
+	width: 6.933333rem;
+	height: 1.14rem;
+	line-height: 1.14rem;
+	border: 0 none;
+	font-size: .426667rem;
+}
+.login-from li i{
+	float: left;
+	margin: .266667rem .266667rem 0 .266667rem;
+}
+.login-from li .icon1{
+	width: .533333rem;
+	height: .533333rem;
+	background: url(../images/loginicon1.png) no-repeat;
+	background-size: contain;
+}
+.login-from li .icon2{
+	width: .533333rem;
+	height: .533333rem;
+	background: url(../images/loginicon2.png) no-repeat;
+	background-size: contain;
+}
+.login-from li .icon3{
+	width: .533333rem;
+	height: .533333rem;
+	background: url(../images/loginicon3.png) no-repeat;
+	background-size: contain;
+}
+.login-from li .icon4{
+	width: .533333rem;
+	height: .533333rem;
+	background: url(../images/loginicon4.png) no-repeat;
+	background-size: contain;
+}
+#login-yzm span{
+	display: inline-block;
+	height: .8rem;
+	width: 2.666667rem;
+	margin: 0 .066667rem;
+	vertical-align: middle;
+	border: 1px solid #dbdbdb;
+}
+#login-yzm span img{
+	width: 100%;
+	height: 100%;
+}
+#login-yzm a{
+	color: #f34c7b;
+	font-size: .373333rem;
+}
+.login-btn{
+	text-align: center;
+	margin: .6rem 0 1rem;
+}
+.login-btn a{
+	display: inline-block;
+	width: 8.666667rem;
+	height: 1.226667rem;
+	line-height: 1.226667rem;
+	background: #2a9efa;
+	border-radius: .133333rem;
+	color: #fff;
+	font-size: .48rem;
+}
+/*登录页面结束*/

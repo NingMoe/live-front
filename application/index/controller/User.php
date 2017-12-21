@@ -30,7 +30,11 @@ class User extends Common
             return json_encode($arr);
 
         }else{
-            return view();
+            if(request()->isMobile()){
+                return view('m-login');
+            }else{
+                return view('login');
+            }
         }
     }
 
