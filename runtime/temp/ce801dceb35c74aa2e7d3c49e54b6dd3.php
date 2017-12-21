@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\mobile.html";i:1513849709;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\mobile.html";i:1513855427;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +20,7 @@
                 <img src="<?php echo $user['head']; ?>" alt="">
             </div>
             <div>
-                <span style="font-size:2rem;"><?php echo $user['nickname']; ?></span>
+                <span class="user-nickname"><?php echo $user['nickname']; ?></span>
                 &nbsp;&nbsp;
                 <?php if($user['profile']['level']>1): ?>
                 <a class="login layui-btn layui-btn-xs layui-btn-radius layui-btn-normal" href="/index/User/logout">退出</a>

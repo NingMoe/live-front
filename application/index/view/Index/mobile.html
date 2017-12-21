@@ -19,7 +19,7 @@
                 <img src="{$user.head}" alt="">
             </div>
             <div>
-                <span style="font-size:2rem;">{$user.nickname}</span>
+                <span class="user-nickname">{$user.nickname}</span>
                 &nbsp;&nbsp;
                 {if condition="$user['profile']['level']>1"}
                 <a class="login layui-btn layui-btn-xs layui-btn-radius layui-btn-normal" href="/index/User/logout">退出</a>

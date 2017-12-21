@@ -122,7 +122,7 @@ class Index extends Common
     }
 
     public function mobile(){
-
+        $this->getUserInfo();
         return view('mobile',[
             'user'=>session('user')
         ]);
