@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\mobile.html";i:1513858624;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\mobile.html";i:1513858772;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,7 +56,7 @@
                     </p>
                     <p class="dm-item">
                         <span>风dsad男人</span>
-                        <span><img src="/static/images/level/level11.gif" alt=""></span>
+                        <span><img src="/static/images/level/level11.png" alt=""></span>
                         12月20日盈利回顾：培训中心麦上麦下25单盈利， 秒杀女神--金鑫
                     </p>
                     <p class="dm-item">
