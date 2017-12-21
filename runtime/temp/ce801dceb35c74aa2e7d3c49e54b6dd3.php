@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\mobile.html";i:1513863295;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\mobile.html";i:1513863537;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,9 +57,11 @@
                     </p>-->
                     <div class="chat-message">
                         <div onclick="showFacePanel(this,'#editor')" class="chat-face">
-                            <a><img src="/static/images/face.png" alt=""></a>
+                            <a><img style="width:70%;height:70%;" src="/static/images/face.png" alt=""></a>
                         </div>
-                        <div class="chat-input"></div>
+                        <div class="chat-input">
+                            <div class="message_editor" id="editor" style="width: 100%;height: 100%;" contenteditable="true"></div>
+                        </div>
                         <div class="chat-send"></div>
                     </div>
                     <div id="face" style="position: absolute; bottom: 100px; left: inherit; display: none;" toinput="#editor"></div>
