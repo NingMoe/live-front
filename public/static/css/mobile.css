@@ -67,10 +67,10 @@ body{
 }
 .chat-head>div{
 	width: 33.3333%;
-	height:100px;
+	height:50px;
 	float: left;
 	text-align: center;
-	line-height: 100px;
+	line-height: 50px;
 }
 .chat-head>div>.item{
 	font-size:.4rem;
