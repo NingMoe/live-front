@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\mobile.html";i:1513855427;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\mobile.html";i:1513855768;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +21,6 @@
             </div>
             <div>
                 <span class="user-nickname"><?php echo $user['nickname']; ?></span>
-                &nbsp;&nbsp;
                 <?php if($user['profile']['level']>1): ?>
                 <a class="login layui-btn layui-btn-xs layui-btn-radius layui-btn-normal" href="/index/User/logout">退出</a>
                 <?php else: ?>
