@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\mobile.html";i:1513858772;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\mobile.html";i:1513860393;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,7 +79,7 @@
         height-=$('.head').height();
         $('.live').height(height*0.4);
         $('.chat').height(height*0.6);
-        $('.chat-content').height(height*0.6-100);
+        $('.chat-content').height(height*0.6-$('.chat-head').height());
     }
     $(window).load(function(){
         scheme();
