@@ -1,26 +1,28 @@
 body{
 	margin:0;
 	padding:0;
+	overflow: hidden;
 }
 .main{
 
 }
 .head{
 	width: 100%;
-	height: 6rem;
-	line-height: 6rem;
+	height: 1.2rem;
+	line-height: 1.2rem;
 	overflow: hidden;
 	background: #fff;
 	position: relative;
 }
 .head .logo{
 	position: absolute;
-	left: .5rem;
+	left: .1rem;
+	height: 1.2rem;
 }
 .head .user-info{
 	position: absolute;
-	height: 5rem;
-	line-height: 5rem;
+	height: 1rem;
+	line-height: 1rem;
 	right: 0rem;
 	top: 50%;
 	-webkit-transform: translateY(-50%);
@@ -31,16 +33,16 @@ body{
 	float:left;
 }
 .head .user-head{
-	height:5rem;
-	width: 6rem;
+	height:1rem;
+	width: 1rem;
 	display: inline-block;
 	margin-right:5px;
 }
 .head .user-nickname{
-	font-size: 2rem;
+	font-size: .4rem;
 	display: block;
 	float: left;
-	width: 7rem;
+	width: 1.5rem;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -50,9 +52,10 @@ body{
 	height:100%;
 	border: 1px solid #FFFAFA;
 	border-radius: 50%;
+	margin-bottom: 10px;
 }
 .head .login{
-	font-size:2rem;
+	font-size:.4rem;
 }
 .chat{
 
@@ -70,8 +73,33 @@ body{
 	line-height: 100px;
 }
 .chat-head>div>.item{
-	font-size:2rem;
+	font-size:.4rem;
 	position: relative;
+}
+.chat-content>div{
+	width: 100%;
+	height: 100%;
+	padding: 10px;
+	font-size:.4rem;
+	overflow: scroll;
+}
+.chat-notice{
+	margin: 0 .26667rem .26667rem;
+	padding: .13333rem .26667rem;
+	background-color: #eee;
+	color: #333;
+	line-height: 1.2;
+	white-space: normal;
+	text-align: left;
+}
+.dm-item{
+	margin-bottom: .37333rem;
+	padding: 0 .26667rem;
+	white-space: normal;
+	line-height: 1.2;
+	font-size: .37333rem;
+	color: #666;
+	text-align: left;
 }
 .cur{
 	color:#1E9FFF;
@@ -80,11 +108,11 @@ body{
 	display: inline-block;
 	position: absolute;
 	content: " ";
-	width: 2rem;
-	height: .4rem;
+	width: .4rem;
+	height: .1rem;
 	background-color: #1E9FFF;
 	bottom: 0;
-	left: 50%;
+	right: 45%;
 	margin-left:-1rem;
 }
 

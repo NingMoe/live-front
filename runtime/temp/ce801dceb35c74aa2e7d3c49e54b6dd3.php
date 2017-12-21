@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\mobile.html";i:1513855768;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\mobile.html";i:1513858624;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +12,7 @@
 <div class="main">
     <div class="head">
         <a class="logo" href="/">
-            <img src="https://i.h2.pdim.gs/f89ab1ce63538491ebec491a509f71ef.png" alt="">
+            <img style="margin-bottom: 10px;" src="https://i.h2.pdim.gs/f89ab1ce63538491ebec491a509f71ef.png" alt="">
         </a>
         <div class="user-info">
 
@@ -22,9 +22,9 @@
             <div>
                 <span class="user-nickname"><?php echo $user['nickname']; ?></span>
                 <?php if($user['profile']['level']>1): ?>
-                <a class="login layui-btn layui-btn-xs layui-btn-radius layui-btn-normal" href="/index/User/logout">退出</a>
+                <a style="margin-bottom: 10px;" class="login layui-btn layui-btn-xs layui-btn-radius layui-btn-normal" href="/index/User/logout">退出</a>
                 <?php else: ?>
-                <a class="login layui-btn layui-btn-xs layui-btn-radius layui-btn-normal" href="/index/User/login">登录/注册</a>
+                <a style="margin-bottom: 10px;" class="login layui-btn layui-btn-xs layui-btn-radius layui-btn-normal" href="/index/User/login">登录/注册</a>
                 <?php endif; ?>
             </div>
         </div>
@@ -43,6 +43,29 @@
             <div class="">
                 <div class="item">在线客服</div>
             </div>
+            <div style="width:100%;" class="chat-content">
+                <div class="chat-content-item1">
+                    <div class="chat-notice">
+                        <span>温馨提示:</span>
+                        12月20日盈利回顾：培训中心麦上麦下25单盈利， 秒杀女神--金鑫老师布局黄金1265空单获利止盈30点！ 全能王-屠龙刀老师布局eia原油多单57.71多单获利止盈30点，麦下布局a50指数13230空单获利止盈95点！ 短线之王-小李飞刀老师布局天然气2.736空单获利60点！ 激情美盘-狙神老师布局新华富时a50 多单13210获利止盈30点！ 空军司令-壮壮老师布局铜3.162多获利止盈400点！ 恭喜跟上培训中心老师做单止盈的朋友，恭喜发财！咨询下方【高级助理】免费预约晚间21:30【初请失业金数据】， 免费预约晚间23:30【天然气eia数据】布局策略以及各品种【预埋策略】！
+                    </div>
+                    <p class="dm-item">
+                        <span>风中的男人</span>
+                        <span><img src="/static/images/level/level2.gif" alt=""></span>
+                        12月20日盈利回顾：培训中心麦上麦下25单盈利， 秒杀女神--金鑫
+                    </p>
+                    <p class="dm-item">
+                        <span>风dsad男人</span>
+                        <span><img src="/static/images/level/level11.gif" alt=""></span>
+                        12月20日盈利回顾：培训中心麦上麦下25单盈利， 秒杀女神--金鑫
+                    </p>
+                    <p class="dm-item">
+                        <span>的撒人</span>
+                        <span><img src="/static/images/level/level6.gif" alt=""></span>
+                        12月20日盈利回顾：培训中心麦上麦下25单盈利， 秒杀女神--金鑫
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -56,6 +79,7 @@
         height-=$('.head').height();
         $('.live').height(height*0.4);
         $('.chat').height(height*0.6);
+        $('.chat-content').height(height*0.6-100);
     }
     $(window).load(function(){
         scheme();
@@ -70,5 +94,64 @@
         $(this).addClass('cur');
         $(this).addClass('bt');
     });
+</script>
+<script>
+    (function(doc, win) {
+        var dpr, rem, scale;
+        var docEl = document.documentElement;
+        var metaEl = document.querySelector('meta[name="viewport"]');
+        var resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize';
+
+
+        /*isAndroid = navigator.userAgent.match(/(Android)/) ? true:false;
+        isIos = navigator.userAgent.match(/(iPad|iPhone)/) ? true:false;*/
+        if (navigator.userAgent.match(/(Android)/)) {
+            dpr = 1;
+        } else {
+            dpr = win.devicePixelRatio || 1;
+        }
+        scale = 1 / dpr;
+// 设置viewport，进行缩放，达到高清效果
+        metaEl.setAttribute('content', 'width=device-width,initial-scale=' + scale + ',maximum-scale=' + scale + ', minimum-scale=' + scale + ',user-scalable=no,shrink-to-fit=no');
+// 设置data-dpr属性，留作的css hack之用
+        docEl.setAttribute('data-dpr', dpr);
+        var recalc = function() {
+// if (docEl.style.fontSize) return;
+            clientWidth = docEl.clientWidth;
+// console.log(clientWidth);
+            if (!clientWidth) return;
+            docEl.style.fontSize = clientWidth / 10 + 'px';
+            if (document.body) {
+                document.body.style.fontSize = docEl.style.fontSize;
+            }
+            if (dpr == 1) {
+// 动态写入样式
+                var fontEl = document.getElementById('init_style');
+                var pxscale = clientWidth / 750;
+                docEl.firstElementChild.appendChild(fontEl);
+                fontEl.innerHTML = '.px-scale{transform:scale(' + pxscale + ') !important;-webkit-transform:scale(' + pxscale + ') !important;}'; //雪碧图缩放
+            }
+        };
+        recalc();
+
+// 给js调用的，某一dpr下rem和px之间的转换函数
+        window.rem2px = function(v) {
+            v = parseFloat(v);
+            return v * rem;
+        };
+        window.px2rem = function(v) {
+            v = parseFloat(v);
+            return v / rem;
+        };
+
+        window.dpr = dpr;
+        window.rem = rem;
+
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+// doc.addEventListener('touchstart', function(e) { e.preventDefault();}, false);
+
+    })(document, window);
 </script>
 </html>
