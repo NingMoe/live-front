@@ -18,7 +18,11 @@
             <div class="user-head">
                 <img src="{$user.head}" alt="">
             </div>
-            <span style="font-size:3rem;">{$user.nickname}</span>
+            <div>
+                <span style="font-size:2rem;">{$user.nickname}({$user.profile.name})</span>
+                &nbsp;&nbsp;
+                <a style="font-size:2rem;margin-bottom: 12px;" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal" href="">退出</a>
+            </div>
         </div>
         {else /}
         <a class="login" href="/index/User/login">登录/注册</a>

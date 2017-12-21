@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\mobile.html";i:1513847438;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\mobile.html";i:1513848600;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +19,11 @@
             <div class="user-head">
                 <img src="<?php echo $user['head']; ?>" alt="">
             </div>
-            <span style="font-size:3rem;"><?php echo $user['nickname']; ?></span>
+            <div>
+                <span style="font-size:2rem;"><?php echo $user['nickname']; ?>(<?php echo $user['profile']['name']; ?>)</span>
+                &nbsp;&nbsp;
+                <a style="font-size:2rem;margin-bottom: 12px;" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal" href="">退出</a>
+            </div>
         </div>
         <?php else: ?>
         <a class="login" href="/index/User/login">登录/注册</a>
