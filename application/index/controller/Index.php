@@ -9,16 +9,16 @@ class Index extends Common
 {
     public function index()
     {
+        //初始化session
+        $user = $this->getUserInfo();
+        unset($user['group']['check_setup']);//删除设置权限字段 否则前端报错
+        unset($user['upwd']);//删除密码字段
+
         //判断是否手机端访问
         if(request()->isMobile()){
             $this->redirect('index/index/mobile');
             return;
         }
-
-        //初始化session
-        $user = $this->getUserInfo();
-        unset($user['group']['check_setup']);//删除设置权限字段 否则前端报错
-        unset($user['upwd']);//删除密码字段
 
         //查询当前用户机器人
         $role = '';

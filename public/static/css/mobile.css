@@ -21,7 +21,7 @@ body{
 	position: absolute;
 	height: 5rem;
 	line-height: 5rem;
-	right: 2rem;
+	right: 0rem;
 	top: 50%;
 	-webkit-transform: translateY(-50%);
 	-ms-transform: translateY(-50%);
@@ -40,20 +40,8 @@ body{
 	height:100%;
 }
 .head .login{
-	position: absolute;
-	height:4rem;
-	line-height: 4rem;
-	width:10rem;
-	right: 1rem;
-	top: 50%;
-	-webkit-transform: translateY(-50%);
-	-ms-transform: translateY(-50%);
-	transform: translateY(-50%);
-	background: #1E9FFF;
-	border-radius: 2.5rem;
-	color: #fff;
-	font-size: 2rem;
-	text-align: center;
+	font-size:2rem;
+	margin-bottom: 12px;
 }
 .chat{
 

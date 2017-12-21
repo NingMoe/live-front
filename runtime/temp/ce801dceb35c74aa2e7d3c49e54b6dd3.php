@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\mobile.html";i:1513848600;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\mobile.html";i:1513849709;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,20 +14,21 @@
         <a class="logo" href="/">
             <img src="https://i.h2.pdim.gs/f89ab1ce63538491ebec491a509f71ef.png" alt="">
         </a>
-        <?php if(!(empty($user) || (($user instanceof \think\Collection || $user instanceof \think\Paginator ) && $user->isEmpty()))): ?>
         <div class="user-info">
+
             <div class="user-head">
                 <img src="<?php echo $user['head']; ?>" alt="">
             </div>
             <div>
-                <span style="font-size:2rem;"><?php echo $user['nickname']; ?>(<?php echo $user['profile']['name']; ?>)</span>
+                <span style="font-size:2rem;"><?php echo $user['nickname']; ?></span>
                 &nbsp;&nbsp;
-                <a style="font-size:2rem;margin-bottom: 12px;" class="layui-btn layui-btn-xs layui-btn-radius layui-btn-normal" href="">退出</a>
+                <?php if($user['profile']['level']>1): ?>
+                <a class="login layui-btn layui-btn-xs layui-btn-radius layui-btn-normal" href="/index/User/logout">退出</a>
+                <?php else: ?>
+                <a class="login layui-btn layui-btn-xs layui-btn-radius layui-btn-normal" href="/index/User/login">登录/注册</a>
+                <?php endif; ?>
             </div>
         </div>
-        <?php else: ?>
-        <a class="login" href="/index/User/login">登录/注册</a>
-        <?php endif; ?>
     </div>
     <div class="live">
         <gs:video-live id="videoComponent" site="shrz888.gensee.com" ctx="webcast" ownerid="0c870b0f9ebb46318bdac9de97e4eae3" uname="" authcode="" class="gs-sdk-widget"><iframe id="97ba1043712e4c7e803992db0ce6eca7" frameborder="0" width="100%" height="100%" name="video_videoComponent_0c870b0f9ebb46318bdac9de97e4eae3_" src="http://shrz888.gensee.com//sdk/site/sdk/media?ownerid=0c870b0f9ebb46318bdac9de97e4eae3&amp;groupId=&amp;android=false&amp;widgetid=videoComponent&amp;uname=visitor_zCzOqS&amp;appName=&amp;uid=9901606030&amp;sc=0&amp;video=&amp;lang=&amp;bar=&amp;bgimg=&amp;compress=false&amp;showChatInAnyCase=false&amp;stream=&amp;userdata=&amp;btnimg="></iframe></gs:video-live>
