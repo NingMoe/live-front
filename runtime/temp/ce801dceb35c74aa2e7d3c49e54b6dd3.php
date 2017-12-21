@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\mobile.html";i:1513863537;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\mobile.html";i:1513865882;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/static/css/mobile.css">
     <link rel="stylesheet" href="/static/layui/css/layui.css">
     <link href="/static/css/face.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/css/index.css">
 </head>
 <body>
 <div class="main">
@@ -60,9 +61,13 @@
                             <a><img style="width:70%;height:70%;" src="/static/images/face.png" alt=""></a>
                         </div>
                         <div class="chat-input">
-                            <div class="message_editor" id="editor" style="width: 100%;height: 100%;" contenteditable="true"></div>
+                            <div class="message_editor" id="editor" style="width: 100%;height: 100%;" contenteditable="true">
+                                发表此刻你最想说的话~
+                            </div>
                         </div>
-                        <div class="chat-send"></div>
+                        <div class="chat-send">
+                            <a style="color:white;" href="javascript:send_msg()">发送</a>
+                        </div>
                     </div>
                     <div id="face" style="position: absolute; bottom: 100px; left: inherit; display: none;" toinput="#editor"></div>
                 </div>
@@ -73,7 +78,13 @@
 
 </body>
 <script type="text/javascript" src="/static/js/jquery.js"></script>
+
 <script>
+
+    //获取用户信息
+    var user = '<?php echo $userinfo; ?>';
+    localStorage.setItem('user',user);
+
     function scheme(){
         var width = $(window).width();
         var height = $(window).height();
@@ -95,7 +106,12 @@
         $(this).addClass('cur');
         $(this).addClass('bt');
     });
-
+    $('#editor').focus(function(){
+        var val = $(this).html();
+        if(val.indexOf('发表此刻你最想说的话')>0){
+            $(this).html('');
+        }
+    });
     //表情包
     function showFacePanel(e,toinput){
         $('#face').css('display','block');
@@ -132,6 +148,31 @@
             });
         });
 
+    }
+    //发送消息
+    /*
+    *  <!--<p class="dm-item">
+                        <span>风中的男人</span>
+                        <span><img src="/static/images/level/level2.gif" alt=""></span>
+                        12月20日盈利回顾：培训中心麦上麦下25单盈利， 秒杀女神--金鑫
+                    </p>-->
+    * */
+    function send_msg(){
+        var user = JSON.parse(localStorage.getItem('user'));
+        var con  = $('#editor').html();
+        var _html = '<p class="dm-item">';
+        _html += ' <span>'+user.nickname+'</span>';
+        _html += '<span class="'+user.profile['class']+'"></span>';
+        _html += con;
+        _html += '</p>';
+        $('.chat-content-item1').append(_html);
+        scrollBar();
+    }
+
+    //调整滚动条位置
+    function scrollBar(){
+        $('#editor').html('');
+        $('.chat').scrollTop( $('.chat').prop("scrollHeight"));
     }
 </script>
 <script>

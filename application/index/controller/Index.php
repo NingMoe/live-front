@@ -125,6 +125,7 @@ class Index extends Common
         $this->getUserInfo();
         return view('mobile',[
             'user'=>session('user')
+            ,'userinfo'=>json_encode(session('user'))
         ]);
     }
 }
