@@ -85,6 +85,7 @@ body{
 	height: 100%;
 	font-size:.4rem;
 	overflow: scroll;
+	overflow-x: hidden;
 }
 .chat-notice{
 	margin: 0 .26667rem .26667rem;
