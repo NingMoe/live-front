@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\mobile.html";i:1513865882;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\mobile.html";i:1513866634;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,22 +56,23 @@
                         <span><img src="/static/images/level/level2.gif" alt=""></span>
                         12月20日盈利回顾：培训中心麦上麦下25单盈利， 秒杀女神--金鑫
                     </p>-->
-                    <div class="chat-message">
-                        <div onclick="showFacePanel(this,'#editor')" class="chat-face">
-                            <a><img style="width:70%;height:70%;" src="/static/images/face.png" alt=""></a>
-                        </div>
-                        <div class="chat-input">
-                            <div class="message_editor" id="editor" style="width: 100%;height: 100%;" contenteditable="true">
-                                发表此刻你最想说的话~
-                            </div>
-                        </div>
-                        <div class="chat-send">
-                            <a style="color:white;" href="javascript:send_msg()">发送</a>
-                        </div>
-                    </div>
-                    <div id="face" style="position: absolute; bottom: 100px; left: inherit; display: none;" toinput="#editor"></div>
+
                 </div>
             </div>
+            <div style="width:100%;" class="chat-message">
+                <div onclick="showFacePanel(this,'#editor')" class="chat-face">
+                    <a><img style="width:70%;height:70%;" src="/static/images/face.png" alt=""></a>
+                </div>
+                <div class="chat-input">
+                    <div class="message_editor" id="editor" style="width: 100%;height: 100%;" contenteditable="true">
+                        发表此刻你最想说的话~
+                    </div>
+                </div>
+                <div class="chat-send">
+                    <a style="color:white;" href="javascript:send_msg()">发送</a>
+                </div>
+            </div>
+            <div id="face" style="position: absolute; bottom: 100px; left: inherit; display: none;" toinput="#editor"></div>
         </div>
     </div>
 </div>
@@ -91,7 +92,7 @@
         height-=$('.head').height();
         $('.live').height(height*0.4);
         $('.chat').height(height*0.6);
-        $('.chat-content').height(height*0.6-$('.chat-head').height());
+        $('.chat-content').height(height*0.6-$('.chat-head').height()-$('.chat-message').height());
     }
     $(window).load(function(){
         scheme();
@@ -172,7 +173,7 @@
     //调整滚动条位置
     function scrollBar(){
         $('#editor').html('');
-        $('.chat').scrollTop( $('.chat').prop("scrollHeight"));
+        $('.chat-content').scrollTop( $('.chat-content').prop("scrollHeight"));
     }
 </script>
 <script>
