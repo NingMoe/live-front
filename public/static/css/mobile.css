@@ -19,6 +19,26 @@ body{
 	position: absolute;
 	left: .5rem;
 }
+.head .user-info{
+	position: absolute;
+	height: 100%;
+	line-height: 100%;
+	right: 5rem;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+.head .user-head{
+	height:5rem;
+	width: 6rem;
+	margin-top:0.5rem;
+	display: inline-block;
+}
+.head .user-head img{
+	width: 100%;
+	height:100%;
+}
 .head .login{
 	position: absolute;
 	height:4rem;

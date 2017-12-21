@@ -9,6 +9,12 @@ class Index extends Common
 {
     public function index()
     {
+        //判断是否手机端访问
+        if(request()->isMobile()){
+            $this->redirect('index/index/mobile');
+            return;
+        }
+
         //初始化session
         $user = $this->getUserInfo();
         unset($user['group']['check_setup']);//删除设置权限字段 否则前端报错
