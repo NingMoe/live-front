@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\mobile.html";i:1513928260;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\mobile.html";i:1513929118;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,7 +66,7 @@
                     <a style="color:white;" href="javascript:send_msg()">发送</a>
                 </div>
             </div>
-            <div id="face" style="position: absolute; bottom: 100px; left: inherit; display: none;" toinput="#editor"></div>
+            <div id="face" style="font-size:.1rem;position: absolute; bottom: 100px; left: inherit; display: none;" toinput="#editor"></div>
         </div>
     </div>
 </div>
