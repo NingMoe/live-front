@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:71:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\index.html";i:1513683286;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:71:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\index.html";i:1513924878;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -438,14 +438,11 @@ background: url('/static/images/bg.jpg')
 			    var date;
 			    var hour;
 			    var minute;
-                //var user = JSON.parse(localStorage.getItem('user'));
 			    for(var i=data.length-1;i>=0;i--){
 			        var id = $(data[i]['message']).attr('id');
 			        $('.chat').append(data[i]['message']);
 			        if(data[i]['is_check']==1){
-			            //if(user.group['check_msg']==0){
-                            $('#'+id).append('<i class="case1" onclick="checkMessage(this)">审核通过</i><i class="case2" onclick="deleteMessage(this)">删除</i></div>');
-						//}
+						$('#'+id).append('<i class="case1" onclick="checkMessage(this)">审核通过</i><i class="case2" onclick="deleteMessage(this)">删除</i></div>');
 					}
 					//修改时间
 					date = new Date(parseInt(data[i].send_time)*1000);

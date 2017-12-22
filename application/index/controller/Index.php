@@ -123,9 +123,12 @@ class Index extends Common
 
     public function mobile(){
         $this->getUserInfo();
+        $user = session('user');
+        unset($user['group']['check_setup']);//删除设置权限字段 否则前端报错
+        unset($user['upwd']);//删除密码字段
         return view('mobile',[
-            'user'=>session('user')
-            ,'userinfo'=>json_encode(session('user'))
+            'user'=>$user
+            ,'userinfo'=>json_encode($user)
         ]);
     }
 }

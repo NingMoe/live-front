@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\mobile.html";i:1513866634;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\mobile.html";i:1513925774;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,16 +47,10 @@
             </div>
             <div style="width:100%;" class="chat-content">
                 <div class="chat-content-item1">
-                    <div class="chat-notice">
+                    <!--<div class="chat-notice">
                         <span>温馨提示:</span>
                         12月20日盈利回顾：培训中心麦上麦下25单盈利， 秒杀女神--金鑫老师布局黄金1265空单获利止盈30点！ 全能王-屠龙刀老师布局eia原油多单57.71多单获利止盈30点，麦下布局a50指数13230空单获利止盈95点！ 短线之王-小李飞刀老师布局天然气2.736空单获利60点！ 激情美盘-狙神老师布局新华富时a50 多单13210获利止盈30点！ 空军司令-壮壮老师布局铜3.162多获利止盈400点！ 恭喜跟上培训中心老师做单止盈的朋友，恭喜发财！咨询下方【高级助理】免费预约晚间21:30【初请失业金数据】， 免费预约晚间23:30【天然气eia数据】布局策略以及各品种【预埋策略】！
-                    </div>
-                    <!--<p class="dm-item">
-                        <span>风中的男人</span>
-                        <span><img src="/static/images/level/level2.gif" alt=""></span>
-                        12月20日盈利回顾：培训中心麦上麦下25单盈利， 秒杀女神--金鑫
-                    </p>-->
-
+                    </div>-->
                 </div>
             </div>
             <div style="width:100%;" class="chat-message">
@@ -90,9 +84,9 @@
         var width = $(window).width();
         var height = $(window).height();
         height-=$('.head').height();
-        $('.live').height(height*0.4);
-        $('.chat').height(height*0.6);
-        $('.chat-content').height(height*0.6-$('.chat-head').height()-$('.chat-message').height());
+        $('.live').height(height*0.3);
+        $('.chat').height(height*0.7);
+        $('.chat-content').height(height*0.7-$('.chat-head').height()-$('.chat-message').height());
     }
     $(window).load(function(){
         scheme();
@@ -162,8 +156,8 @@
         var user = JSON.parse(localStorage.getItem('user'));
         var con  = $('#editor').html();
         var _html = '<p class="dm-item">';
-        _html += ' <span>'+user.nickname+'</span>';
         _html += '<span class="'+user.profile['class']+'"></span>';
+        _html += ' <span>'+user.nickname+'：</span>';
         _html += con;
         _html += '</p>';
         $('.chat-content-item1').append(_html);
@@ -173,8 +167,9 @@
     //调整滚动条位置
     function scrollBar(){
         $('#editor').html('');
-        $('.chat-content').scrollTop( $('.chat-content').prop("scrollHeight"));
+        $('.chat-content-item1').scrollTop($('.chat-content-item1').prop("scrollHeight"));
     }
+
 </script>
 <script>
     (function(doc, win) {
