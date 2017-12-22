@@ -83,9 +83,9 @@
         var width = $(window).width();
         var height = $(window).height();
         height-=$('.head').height();
-        $('.live').height(height*0.3);
-        $('.chat').height(height*0.7);
-        $('.chat-content').height(height*0.7-$('.chat-head').height()-$('.chat-message').height());
+        $('.live').height(height*0.4);
+        $('.chat').height(height*0.6);
+        $('.chat-content').height(height*0.6-$('.chat-head').height()-$('.chat-message').height());
     }
     $(window).load(function(){
         scheme();
@@ -143,14 +143,12 @@
         });
 
     }
+    $('#editor').keydown(function(e){
+        if(e.which==13){
+            send_msg();
+        }
+    });
     //发送消息
-    /*
-    *  <!--<p class="dm-item">
-                        <span>风中的男人</span>
-                        <span><img src="/static/images/level/level2.gif" alt=""></span>
-                        12月20日盈利回顾：培训中心麦上麦下25单盈利， 秒杀女神--金鑫
-                    </p>-->
-    * */
     function send_msg(){
         var user = JSON.parse(localStorage.getItem('user'));
         var con  = $('#editor').html();

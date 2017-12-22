@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\mobile.html";i:1513925774;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\mobile.html";i:1513927156;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -144,14 +144,12 @@
         });
 
     }
+    $('#editor').keydown(function(e){
+        if(e.which==13){
+            send_msg();
+        }
+    });
     //发送消息
-    /*
-    *  <!--<p class="dm-item">
-                        <span>风中的男人</span>
-                        <span><img src="/static/images/level/level2.gif" alt=""></span>
-                        12月20日盈利回顾：培训中心麦上麦下25单盈利， 秒杀女神--金鑫
-                    </p>-->
-    * */
     function send_msg(){
         var user = JSON.parse(localStorage.getItem('user'));
         var con  = $('#editor').html();
