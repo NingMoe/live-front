@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\mobile.html";i:1513927156;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\mobile.html";i:1513928260;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +14,7 @@
 <div class="main">
     <div class="head">
         <a class="logo" href="/">
-            <img style="margin-bottom: 10px;" src="https://i.h2.pdim.gs/f89ab1ce63538491ebec491a509f71ef.png" alt="">
+            <img style="margin-bottom: 10px;" src="/static/images/logo.png" alt="">
         </a>
         <div class="user-info">
 
@@ -84,9 +84,9 @@
         var width = $(window).width();
         var height = $(window).height();
         height-=$('.head').height();
-        $('.live').height(height*0.3);
-        $('.chat').height(height*0.7);
-        $('.chat-content').height(height*0.7-$('.chat-head').height()-$('.chat-message').height());
+        $('.live').height(height*0.4);
+        $('.chat').height(height*0.6);
+        $('.chat-content').height(height*0.6-$('.chat-head').height()-$('.chat-message').height());
     }
     $(window).load(function(){
         scheme();
@@ -107,6 +107,43 @@
             $(this).html('');
         }
     });
+    $('#editor').keydown(function(e){
+        if(e.which==13){
+            send_msg();
+        }
+    });
+    //发送消息
+    function send_msg(){
+        var user = JSON.parse(localStorage.getItem('user'));
+        var con  = $('#editor').html();
+        con = processMsg(con);
+        if(con.length<=0){
+            return;
+        }
+        var _html = '<p class="dm-item">';
+        _html += '<span class="'+user.profile['class']+'"></span>';
+        _html += ' <span>'+user.nickname+'：</span>';
+        _html += con;
+        _html += '</p>';
+        $('.chat-content-item1').append(_html);
+        scrollBar();
+    }
+
+    //调整滚动条位置
+    function scrollBar(){
+        $('#editor').html('');
+        $('.chat-content-item1').scrollTop($('.chat-content-item1').prop("scrollHeight"));
+    }
+
+    //消息替换
+    function processMsg(message){
+        message = message.replace(/<br>/g,"");
+        message = message.replace(/<div>/g,"");
+        message = message.replace(/<\/div>/g,"");
+        message = message.replace(/\"/g,"'");
+        return message;
+    }
+
     //表情包
     function showFacePanel(e,toinput){
         $('#face').css('display','block');
@@ -144,30 +181,6 @@
         });
 
     }
-    $('#editor').keydown(function(e){
-        if(e.which==13){
-            send_msg();
-        }
-    });
-    //发送消息
-    function send_msg(){
-        var user = JSON.parse(localStorage.getItem('user'));
-        var con  = $('#editor').html();
-        var _html = '<p class="dm-item">';
-        _html += '<span class="'+user.profile['class']+'"></span>';
-        _html += ' <span>'+user.nickname+'：</span>';
-        _html += con;
-        _html += '</p>';
-        $('.chat-content-item1').append(_html);
-        scrollBar();
-    }
-
-    //调整滚动条位置
-    function scrollBar(){
-        $('#editor').html('');
-        $('.chat-content-item1').scrollTop($('.chat-content-item1').prop("scrollHeight"));
-    }
-
 </script>
 <script>
     (function(doc, win) {

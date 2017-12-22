@@ -13,7 +13,7 @@
 <div class="main">
     <div class="head">
         <a class="logo" href="/">
-            <img style="margin-bottom: 10px;" src="https://i.h2.pdim.gs/f89ab1ce63538491ebec491a509f71ef.png" alt="">
+            <img style="margin-bottom: 10px;" src="/static/images/logo.png" alt="">
         </a>
         <div class="user-info">
 
@@ -106,6 +106,43 @@
             $(this).html('');
         }
     });
+    $('#editor').keydown(function(e){
+        if(e.which==13){
+            send_msg();
+        }
+    });
+    //发送消息
+    function send_msg(){
+        var user = JSON.parse(localStorage.getItem('user'));
+        var con  = $('#editor').html();
+        con = processMsg(con);
+        if(con.length<=0){
+            return;
+        }
+        var _html = '<p class="dm-item">';
+        _html += '<span class="'+user.profile['class']+'"></span>';
+        _html += ' <span>'+user.nickname+'：</span>';
+        _html += con;
+        _html += '</p>';
+        $('.chat-content-item1').append(_html);
+        scrollBar();
+    }
+
+    //调整滚动条位置
+    function scrollBar(){
+        $('#editor').html('');
+        $('.chat-content-item1').scrollTop($('.chat-content-item1').prop("scrollHeight"));
+    }
+
+    //消息替换
+    function processMsg(message){
+        message = message.replace(/<br>/g,"");
+        message = message.replace(/<div>/g,"");
+        message = message.replace(/<\/div>/g,"");
+        message = message.replace(/\"/g,"'");
+        return message;
+    }
+
     //表情包
     function showFacePanel(e,toinput){
         $('#face').css('display','block');
@@ -143,30 +180,6 @@
         });
 
     }
-    $('#editor').keydown(function(e){
-        if(e.which==13){
-            send_msg();
-        }
-    });
-    //发送消息
-    function send_msg(){
-        var user = JSON.parse(localStorage.getItem('user'));
-        var con  = $('#editor').html();
-        var _html = '<p class="dm-item">';
-        _html += '<span class="'+user.profile['class']+'"></span>';
-        _html += ' <span>'+user.nickname+'：</span>';
-        _html += con;
-        _html += '</p>';
-        $('.chat-content-item1').append(_html);
-        scrollBar();
-    }
-
-    //调整滚动条位置
-    function scrollBar(){
-        $('#editor').html('');
-        $('.chat-content-item1').scrollTop($('.chat-content-item1').prop("scrollHeight"));
-    }
-
 </script>
 <script>
     (function(doc, win) {

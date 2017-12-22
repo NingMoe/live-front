@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:71:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\index.html";i:1513924878;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:71:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\index.html";i:1513928212;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,7 +48,7 @@ background: url('/static/images/bg.jpg')
 <?php endif; ?>
 ">
 	<div class="header">
-		<div class="logo"></div>
+		<div class="logo"><img src="/static/images/logo.png" alt=""></div>
 		<div class="guanliyuan">
 			<ul class="setup">
 				<?php if(!(empty($set) || (($set instanceof \think\Collection || $set instanceof \think\Paginator ) && $set->isEmpty()))): foreach($set as $val): ?>
