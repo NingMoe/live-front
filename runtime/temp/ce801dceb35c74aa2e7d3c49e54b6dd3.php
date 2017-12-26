@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\mobile.html";i:1514279261;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\mobile.html";i:1514280590;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -192,22 +192,12 @@
         //查询发言记录
         $.post('/index/Index/message',{},function(data){
             data = JSON.parse(data);
-            console.log(data);return;
-            var date;
-            var hour;
-            var minute;
             for(var i=data.length-1;i>=0;i--){
-                var name = data.nickname;
-                var className = $(msg).find('.messageInfo span:eq(2)').attr('class');
-                var con  = $(msg).find('.messageContent span').html();
-                var _html = packageMsg(user.profile['class'],user.nickname,con);
+                var nickname = data[i].nickname;
+                var className = data[i].class;
+                var con  = data[i].message;
+                var _html = packageMsg(className,nickname,con);
                 $('.chat-content-item1').append(_html);
-                //修改时间
-                //date = new Date(parseInt(data[i].send_time)*1000);
-                //hour = date.getHours();
-                //minute = date.getMinutes();
-                //minute = minute>=10?minute:'0'+minute;
-                //$('#'+id).find('.messageInfo').find('span').eq(1).html(hour+':'+minute);
             }
             scrollBar();
         });

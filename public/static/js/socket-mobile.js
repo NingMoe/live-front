@@ -20,15 +20,20 @@ ws.onmessage = function(e){
                localStorage.setItem('user',JSON.stringify(user));
            });
            break;
+       case 'pass':
+           var nickname = data.nickname;
+           var className = data.class;
+           var con  = data.msg;
+           var _html = packageMsg(className,nickname,con);
+           $('.chat-content-item1').append(_html);
+           scrollBar();
+           break;
        case 'msg':
-           var name = $(data.msg).find('.messageInfo span:eq(0)').html();
-           var className = $(data.msg).find('.messageInfo span:eq(2)').attr('class');
-           var con  = $(data.msg).find('.messageContent span').html();
-           var _html = '<p class="dm-item">';
-           _html += '<span class="'+className+'"></span>';
-           _html += ' <span>'+name+'：</span>';
-           _html += con;
-           _html += '</p>';
+           var nickname = data.user['nickname'];
+           var className = data.user['profile']['class'];
+           var con  = data.msg;
+           var _html = packageMsg(className,nickname,con);
+
            $('.chat-content-item1').append(_html);
            scrollBar();
            break;
