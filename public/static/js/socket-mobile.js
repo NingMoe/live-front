@@ -21,15 +21,9 @@ ws.onmessage = function(e){
            });
            break;
        case 'msg':
-            var name = $(data.msg).find('.messageInfo span:eq(0)').html();
-            var className = $(data.msg).find('.messageInfo span:eq(2)').attr('class');
-            var con  = $(data.msg).find('.messageContent span').html();
-            if(data.is_check){
-                //data.msg += '<i class="case1" onclick="checkMessage(this)">审核通过</i><i class="case2" onclick="deleteMessage(this)">删除</i></div>';
-            }else{
-               // var mid = data.mid;
-               // $('#'+mid).find('i').remove();
-            }
+           var name = $(data.msg).find('.messageInfo span:eq(0)').html();
+           var className = $(data.msg).find('.messageInfo span:eq(2)').attr('class');
+           var con  = $(data.msg).find('.messageContent span').html();
            var _html = '<p class="dm-item">';
            _html += '<span class="'+className+'"></span>';
            _html += ' <span>'+name+'：</span>';

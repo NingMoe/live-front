@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\mobile.html";i:1514255531;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\mobile.html";i:1514279261;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,22 +48,7 @@
             <div style="width:100%;" class="chat-content">
                 <!--<div class="chat-notice"></div>-->
                 <div class="chat-content-item1" style="transform:translate(0,0);">
-                    <p class="dm-item"><span class=""></span> <span>游客1513934257：</span>dsa</p>
-                    <p class="dm-item"><span class=""></span> <span>游客1513934257：</span>dsa</p>
-                    <p class="dm-item"><span class=""></span> <span>游客1513934257：</span>dsa</p>
-                    <p class="dm-item"><span class=""></span> <span>游客1513934257：</span>dsa</p>
-                    <p class="dm-item"><span class=""></span> <span>游客1513934257：</span>dsa</p>
-                    <p class="dm-item"><span class=""></span> <span>游客1513934257：</span>dsa</p>
-                    <p class="dm-item"><span class=""></span> <span>游客1513934257：</span>dsa</p>
-                    <p class="dm-item"><span class=""></span> <span>游客1513934257：</span>dsa</p>
-                    <p class="dm-item"><span class=""></span> <span>游客1513934257：</span>dsa</p>
-                    <p class="dm-item"><span class=""></span> <span>游客1513934257：</span>dsa</p>
-                    <p class="dm-item"><span class=""></span> <span>游客1513934257：</span>dsa</p>
-                    <p class="dm-item"><span class=""></span> <span>游客1513934257：</span>dsa</p>
-                    <p class="dm-item"><span class=""></span> <span>游客1513934257：</span>dsa</p>
-                    <p class="dm-item"><span class=""></span> <span>游客1513934257：</span>dsa</p>
-                    <p class="dm-item"><span class=""></span> <span>游客1513934257：</span>dsa</p>
-                    <p class="dm-item"><span class=""></span> <span>游客1513934257：</span>dsa</p>
+                    <!--<p class="dm-item"><span class=""></span> <span>游客1513934257：</span>dsa</p>-->
                 </div>
             </div>
             <div style="width:100%;" class="chat-message">
@@ -120,6 +105,7 @@
             $(this).html('');
         }
     });
+
     $('#editor').keydown(function(e){
         if(e.which==13){
             send_msg();
@@ -133,13 +119,19 @@
         if(con.length<=0){
             return;
         }
-        var _html = '<p class="dm-item">';
-        _html += '<span class="'+user.profile['class']+'"></span>';
-        _html += ' <span>'+user.nickname+'：</span>';
-        _html += con;
-        _html += '</p>';
+        var _html = packageMsg(user.profile['class'],user.nickname,con);
         $('.chat-content-item1').append(_html);
         scrollBar();
+    }
+
+    //拼装消息
+    function packageMsg(className,nickname,msg){
+        var _html = '<p class="dm-item">';
+        _html += '<span class="'+className+'"></span>';
+        _html += ' <span>'+nickname+'：</span>';
+        _html += msg;
+        _html += '</p>';
+        return _html;
     }
 
     //调整滚动条位置
@@ -194,6 +186,32 @@
         });
 
     }
+
+    //页面初始化
+    $(function(){
+        //查询发言记录
+        $.post('/index/Index/message',{},function(data){
+            data = JSON.parse(data);
+            console.log(data);return;
+            var date;
+            var hour;
+            var minute;
+            for(var i=data.length-1;i>=0;i--){
+                var name = data.nickname;
+                var className = $(msg).find('.messageInfo span:eq(2)').attr('class');
+                var con  = $(msg).find('.messageContent span').html();
+                var _html = packageMsg(user.profile['class'],user.nickname,con);
+                $('.chat-content-item1').append(_html);
+                //修改时间
+                //date = new Date(parseInt(data[i].send_time)*1000);
+                //hour = date.getHours();
+                //minute = date.getMinutes();
+                //minute = minute>=10?minute:'0'+minute;
+                //$('#'+id).find('.messageInfo').find('span').eq(1).html(hour+':'+minute);
+            }
+            scrollBar();
+        });
+    });
 </script>
 <script>
     (function(doc, win) {

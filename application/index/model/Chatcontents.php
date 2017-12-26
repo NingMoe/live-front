@@ -12,9 +12,15 @@ use think\Model;
 class Chatcontents extends Model
 {
     public function get_contents($where=''){
+
         return Chatcontents::all(function($query) use($where){
-            $query->where($where)->order('send_time desc')->limit(50);
+            $query->join('tp_level','tp_Chatcontents.level_id=tp_level.id')->where($where)->order('send_time desc')->limit(50);
         });
+
+    }
+
+    public function profile(){
+        return $this->hasOne('level','id','level_id');
     }
 
 }

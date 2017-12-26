@@ -56,12 +56,14 @@ class Worker extends Controller
      */
     public function sendMsg(){
         if(request()->isPost()){
+            $user = session('user');
+            $data['user'] = session('user');
             $data['type'] = 'msg';
             $data['msg']  = input('post.msg');
             $data['mid']  = input('post.mid');
-            $data['cid']  = input('post.cid');
-            $data['is_check'] = session('user.group')['check_msg'];dump(session('user'));
+            $data['is_check'] = session('user.group')['check_msg'];
             $data['time'] = time();
+
             //判断该条发言是否需要审核
             //如果需要审核,则拼装审核的按钮,否则拼装</div>结束
             if($data['is_check']){
@@ -73,7 +75,8 @@ class Worker extends Controller
             }
 
             //保存发言
-            return Message::saveMsg($data);
+            Message::saveMsg($data);
+
         }
     }
 
@@ -85,9 +88,10 @@ class Worker extends Controller
             if(session('user.group')['check_msg']!=0){
                 return '{"type":"error","msg":"对不起,您没有权限进行该项操作"}';
             }
-            $data = input('post.');
+            $data = input('post.arr');
+            $data = json_decode($data,true);
             if($data['flag']=='pass'){
-                $data['type'] = 'msg';
+                $data['type'] = 'pass';
                 Gateway::sendToAll(json_encode($data),'',[0=>session('user.clientId'),1=>$data['cid']]);
                 //更新发言的审核状态
                 if(Message::saveMsgStatus($data['mid'])){

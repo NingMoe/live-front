@@ -13,6 +13,10 @@ class Chatcontents extends Model
 {
     public function add($data){
         $msg = [
+            'cid'=>$data['user']['clientId'],
+            'nickname'=>$data['user']['nickname'],
+            'avatar'=>$data['user']['head'],
+            'level_id'=>$data['user']['profile']['id'],
             'message'=>$data['msg'],
             'send_time'=>$data['time'],
             'is_check'=>$data['is_check'],

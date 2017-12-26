@@ -20,7 +20,8 @@ ws.onmessage = function(e){
                localStorage.setItem('user',JSON.stringify(user));
            });
            break;
-       case 'msg':console.log(data);
+       case 'msg': console.log(data);
+            data.msg = packageMsg(data.user['clientId'],data.user['head'],data.user['nickname'],data.user['profile']['class'],data.user['profile']['bg'],data.user['style'],data.time,data.msg,data.mid);
             if(data.is_check){
                 data.msg += '<i class="case1" onclick="checkMessage(this)">审核通过</i><i class="case2" onclick="deleteMessage(this)">删除</i></div>';
             }else{
@@ -53,6 +54,13 @@ ws.onmessage = function(e){
            }*/
            $('.chat').append(data.msg);
            scrollBar();
+           break;
+       case 'pass':
+           data.msg = packageMsg(data.cid,data.head,data.nickname,data.class,data.bg,data.style,data.time,data.msg,data.mid);
+           if($(data.mid).length<=0){
+               $('.chat').append(data.msg);
+               scrollBar();
+           }
            break;
        case 'ping':
            //响应心跳,避免断开连接

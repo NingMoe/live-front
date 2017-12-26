@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:71:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\index.html";i:1513928212;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:71:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\index.html";i:1514269690;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -439,6 +439,7 @@ background: url('/static/images/bg.jpg')
 			    var hour;
 			    var minute;
 			    for(var i=data.length-1;i>=0;i--){
+                    data[i]['message'] = packageMsg(data[i]['cid'],data[i]['avatar'],data[i]['nickname'],data[i]['class'],data[i]['bg'],data[i]['style'],data[i]['send_time'],data[i]['message'],data[i]['mid']);
 			        var id = $(data[i]['message']).attr('id');
 			        $('.chat').append(data[i]['message']);
 			        if(data[i]['is_check']==1){

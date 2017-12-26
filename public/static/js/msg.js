@@ -16,13 +16,13 @@ function sendMsg(){
     var mid = createId(user.uname);
 
     //拼装消息
-    var con =  packageMsg(user,msg,mid);
+    var con =  packageMsg(user.clientId,user.head,user.nickname,user.profile['class'],user.profile['bg'],user.profile['style'],getTime(),msg,mid);
     $('.chat').append(con);
 
     //调整滚动条
     scrollBar();
     //发送消息
-    $.post('/push/Worker/sendMsg',{msg:con,mid:mid,cid:CLIENT_ID},function(data){
+    $.post('/push/Worker/sendMsg',{msg:msg,mid:mid},function(data){
 
     });
 }
@@ -30,24 +30,22 @@ function sendMsg(){
 
 //审核按钮
 function checkMessage(o){
-
-    var mid = $(o).parent('.chatInfo').attr('id');
-    var cid = $(o).parent('.chatInfo').attr('cid');
-
-    //获取html 去除按钮
-    var par =  $('#'+mid).clone();
-    par.find('i').remove();
-    var con = par.html();
-
-
-
-    //获取不到当前元素的html 只能获取子元素的html 直接拼接
-    var _html = '<div class="chatInfo" id="'+mid+'">';
-    _html += con;
-    _html += '</div>';
-
+    o = $(o).parent('.chatInfo');
+    var arr = {};
+    var mid = $(o).attr('id');
+    arr['flag'] = 'pass';
+    arr['mid'] = $(o).attr('id');
+    arr['cid'] = $(o).attr('cid');
+    arr['head'] = $(o).children('img').attr('src');
+    arr['nickname'] = $(o).find('.messageInfo span:eq(0)').html();
+    arr['time'] = getTime();
+    arr['class'] = $(o).find('.messageInfo span:eq(2)').attr('class');
+    arr['style'] = $(o).find('.messageContent span').attr('style');
+    arr['bg'] = $(o).find('.messageContent').attr('style');
+    arr['msg'] = $(o).find('.messageContent span').html();
+    arr = JSON.stringify(arr);
     //发送消息
-    $.post('/push/Worker/sendToAllMsg',{cid:cid,msg:_html,mid:mid,flag:'pass'},function(data){
+    $.post('/push/Worker/sendToAllMsg',{arr:arr},function(data){
         data = JSON.parse(data);
         if(data.type=='error'){
             layer.msg(data.msg);
@@ -85,18 +83,18 @@ function processMsg(message){
 }
 
 //拼装消息
-function packageMsg(user,msg,mid){
-    var contents = '<div class="chatInfo" id="'+mid+'" cid="'+user.clientId+'">';
-    contents += '<img src="'+user.head+'" class="userHead">';
+function packageMsg(cid,avatar,nickname,level,bg,style,time,msg,mid){
+    var contents = '<div class="chatInfo" id="'+mid+'" cid="'+cid+'">';
+    contents += '<img src="'+avatar+'" class="userHead">';
     contents += '<div class="userRight">';
     contents += '<div class="messageInfo">';
-    contents += '<span>'+user.nickname+'</span>';
-    contents += '<span>'+getTime()+'</span>';
-    contents += '<span class="'+user.profile['class']+'">';
+    contents += '<span>'+nickname+'</span>';
+    contents += '<span>'+time+'</span>';
+    contents += '<span class="'+level+'">';
     contents += '</span>';
     contents += '</div>';
-    contents += '<div class="messageContent" style="'+user.profile['bg']+'">';
-    contents += '<span style="'+user.profile['style']+'">'+msg+'</span>';
+    contents += '<div class="messageContent" style="'+bg+'">';
+    contents += '<span style="'+style+'">'+msg+'</span>';
     contents += '</div>';
     contents += '</div>';
     return contents;
