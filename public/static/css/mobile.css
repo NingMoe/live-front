@@ -89,13 +89,14 @@ body{
 	overflow-x: hidden;
 }
 .chat-notice{
-	margin: 0 .26667rem .26667rem;
-	padding: .13333rem .26667rem;
-	background-color: #eee;
-	color: #333;
-	line-height: 1.2;
-	white-space: normal;
+	width:100%;
+	height:auto;
+	max-height:2rem;
+	position: absolute;
+	background: #FFE4E1;
 	text-align: left;
+	text-indent: .1rem;
+	z-index: 10;
 }
 .dm-item{
 	margin-bottom: .37333rem;
