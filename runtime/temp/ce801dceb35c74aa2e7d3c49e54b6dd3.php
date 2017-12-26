@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\mobile.html";i:1514255202;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"D:\phpStudy\WWW\yiqiu\public/../application/index\view\index\mobile.html";i:1514255531;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,7 +46,7 @@
                 <div class="item">在线客服</div>
             </div>
             <div style="width:100%;" class="chat-content">
-                <div class="chat-notice">温馨提示:多久啊圣诞节了撒娇地市级奥迪沙的哈是滴撒哈迪欧撒活动is啊好的哦is阿訇地撒谎大赛活动的活塞活动is阿活动is啊的挥洒的活塞的hi按属地的活塞的还大红is</div>
+                <!--<div class="chat-notice"></div>-->
                 <div class="chat-content-item1" style="transform:translate(0,0);">
                     <p class="dm-item"><span class=""></span> <span>游客1513934257：</span>dsa</p>
                     <p class="dm-item"><span class=""></span> <span>游客1513934257：</span>dsa</p>

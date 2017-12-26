@@ -57,10 +57,11 @@ ws.onmessage = function(e){
        case 'feiping':
            $('.chat-notice').remove();
            var _html = '<div class="chat-notice">';
-           _html += '<span>温馨提示:</span>';
+           _html += '温馨提示:';
            _html += data.desc;
            _html += '</div>';
-           $('.chat-content-item1').prepend(_html);
+           $('.chat-content').prepend(_html);
+           setTimeout(function(){$('.chat-notice').remove();},5000);
            break;
        case 'blackList':
            location.href='/index/Error/index';
