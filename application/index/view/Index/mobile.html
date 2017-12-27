@@ -45,9 +45,9 @@
                 <div class="item">在线客服</div>
             </div>
             <div style="width:100%;" class="chat-content">
-                <!--<div class="chat-notice"></div>-->
-                <div class="chat-content-item1" style="transform:translate(0,0);">
-                    <!--<p class="dm-item"><span class=""></span> <span>游客1513934257：</span>dsa</p>-->
+                <div class="chat-content-item1" style="transform:translate(0,0);"></div>
+                <div class="chat-content-item2" style="transform:translate(0,0);display: none;">
+                    <iframe id="iframe"  height="8000px"  width="100%"  frameborder="0" scrolling="no" src="http://www.jin10.com/example/jin10.com.html"></iframe>
                 </div>
             </div>
             <div style="width:100%;" class="chat-message">
@@ -56,7 +56,7 @@
                 </div>
                 <div class="chat-input">
                     <div class="message_editor" id="editor" style="width: 100%;height: 100%;" contenteditable="true">
-                        发表此刻你最想说的话~
+
                     </div>
                 </div>
                 <div class="chat-send">
@@ -71,6 +71,7 @@
 </body>
 <script type="text/javascript" src="/static/js/jquery.js"></script>
 <script type="text/javascript" src="/static/js/socket-mobile.js"></script>
+<script type="text/javascript" src="/static/js/md5.js"></script>
 <script>
 
     //获取用户信息
@@ -93,10 +94,21 @@
     });
 
     $('.item').click(function(){
+        var name = $(this).html();
         $('.item').removeClass('cur');
         $('.item').removeClass('bt');
         $(this).addClass('cur');
         $(this).addClass('bt');
+        if(name=='聊天'){
+            $('.chat-content-item1').css('display','block').siblings('div').css('display','none');
+        }else if(name=='实时数据'){
+            $('.chat-content-item2').css('display','block').siblings('div').css('display','none');
+            $('.chat-message').css('display','none');
+        }else if(name='在线客服'){
+            $.post('/index/index/qq',{},function(data){
+                location.href='http://wpa.qq.com/msgrd?v=3&uin='+data+'&site=qq&menu=yes';
+            });
+        }
     });
     $('#editor').focus(function(){
         var val = $(this).html();
@@ -110,10 +122,13 @@
             send_msg();
         }
     });
+
+
     //发送消息
     function send_msg(){
         var user = JSON.parse(localStorage.getItem('user'));
         var con  = $('#editor').html();
+        var mid = createId(user.uname);
         con = processMsg(con);
         if(con.length<=0){
             return;
@@ -121,6 +136,16 @@
         var _html = packageMsg(user.profile['class'],user.nickname,con);
         $('.chat-content-item1').append(_html);
         scrollBar();
+        //发送消息
+        $.post('/push/Worker/sendMsg',{msg:con,mid:mid},function(data){
+
+        });
+    }
+
+    //生成唯一id
+    function createId(uid){
+        var time = new Date().getTime();
+        return md5(uid+time);
     }
 
     //拼装消息
@@ -188,6 +213,9 @@
 
     //页面初始化
     $(function(){
+
+        //$('#editor').html('发表此刻你最想说的话~');
+
         //查询发言记录
         $.post('/index/Index/message',{},function(data){
             data = JSON.parse(data);

@@ -56,7 +56,7 @@ ws.onmessage = function(e){
        case 'feiping':
            $('.chat-notice').remove();
            var _html = '<div class="chat-notice">';
-           _html += '温馨提示:';
+           //_html += '温馨提示:';
            _html += data.desc;
            _html += '</div>';
            $('.chat-content').prepend(_html);

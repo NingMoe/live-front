@@ -38,6 +38,7 @@ class User extends Common
         }
     }
 
+
     public function register(){
         if($_POST){
             $data = input('post.');
@@ -57,6 +58,8 @@ class User extends Common
                 $arr['msg'] = '验证码错误';
             }
             return json_encode($arr);
+        }else{
+            return view('m-register');
         }
 
     }

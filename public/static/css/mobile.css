@@ -224,8 +224,8 @@ body{
 }
 #login-yzm span{
 	display: inline-block;
-	height: .8rem;
-	width: 2.666667rem;
+	/*height: .8rem;*/
+	width: 3rem;
 	margin: 0 .066667rem;
 	vertical-align: middle;
 	border: 1px solid #dbdbdb;
@@ -237,6 +237,15 @@ body{
 #login-yzm a{
 	color: #f34c7b;
 	font-size: .373333rem;
+}
+.getma{
+	float: right;
+	width: 2.533333rem;
+	margin-top: 0.1rem;
+	text-align: center;
+	border-left: 1px solid #dcdcdc;
+	font-size: 0.373333rem;
+	color: #f34c7b;
 }
 .login-btn{
 	text-align: center;

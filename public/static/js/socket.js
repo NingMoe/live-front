@@ -20,8 +20,8 @@ ws.onmessage = function(e){
                localStorage.setItem('user',JSON.stringify(user));
            });
            break;
-       case 'msg': console.log(data);
-            data.msg = packageMsg(data.user['clientId'],data.user['head'],data.user['nickname'],data.user['profile']['class'],data.user['profile']['bg'],data.user['style'],data.time,data.msg,data.mid);
+       case 'msg':
+            data.msg = packageMsg(data.user['clientId'],data.user['head'],data.user['nickname'],data.user['profile']['class'],data.user['profile']['bg'],data.user['profile']['style'],data.time,data.msg,data.mid);
             if(data.is_check){
                 data.msg += '<i class="case1" onclick="checkMessage(this)">审核通过</i><i class="case2" onclick="deleteMessage(this)">删除</i></div>';
             }else{
